@@ -1,3 +1,1 @@
-
-
-export const API_URL = 'https://demo.com';
+export const TEST_URL = 'https://demo.com';

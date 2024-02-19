@@ -10,7 +10,7 @@ import { serialize, UnsignedTransaction } from "@ethersproject/transactions";
 
 // takes in a 'tx' and returns the amount of gas that needs to be paid
 // (l2_excecution_cost + l1_data_availability_cost)
-export const estimateGasWithTx = async (tx: ContractTransaction, signer: Signer) => {
+export const estimateGasWithTx = async (tx: ContractTransaction, signer: Signer): Promise<bigint> => {
     let provider = signer.provider as Provider;
 
 
@@ -28,7 +28,7 @@ export const estimateGasWithTx = async (tx: ContractTransaction, signer: Signer)
 
 
 // Given an estimated gas amount, returns the amount of gas that needs to be paid
-export const getL2GasFeeToPay = async (estimatedGasResult: bigint, provider: Provider) => {
+export const getL2GasFeeToPay = async (estimatedGasResult: bigint, provider: Provider): Promise<bigint> => {
     let current = await getL2GasFee(provider);
 
     return estimatedGasResult * current;
@@ -38,7 +38,7 @@ export const getL2GasFeeToPay = async (estimatedGasResult: bigint, provider: Pro
 // Returns the current gas price in gwei
 export const getL2GasFee = async (
     provider: Provider
-) => {
+): Promise<bigint> => {
     let currentGas = (await provider.getFeeData()).gasPrice;
 
     if (!currentGas) {
@@ -50,7 +50,7 @@ export const getL2GasFee = async (
 
 
 // Returns the current L1 gas price in gwei
-export const getDataAvailabilityGasPrice = async (data: BytesLike, provider: Provider) => {
+export const getDataAvailabilityGasPrice = async (data: BytesLike, provider: Provider): Promise<bigint> => {
     let l1GasOracle = await genL1GasPriceOracle(provider);
     let currentGas = await l1GasOracle.getL1Fee(data);
 
@@ -76,6 +76,6 @@ export async function buildUnsignedTransaction(signer: Signer, tx: ContractTrans
 }
 
 
-export function getSerializedTransaction(tx: UnsignedTransaction) {
+export function getSerializedTransaction(tx: UnsignedTransaction): string {
     return serialize(tx);
 }

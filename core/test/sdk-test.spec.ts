@@ -26,7 +26,7 @@ let provider = new ethers.JsonRpcProvider("https://sepolia-rpc.scroll.io");
 const erc20 = new ethers.Contract(address, abi, provider);
 
 
-let wallet = new ethers.Wallet("YOUR_PRIVATE_KEY", provider);
+let wallet = new ethers.Wallet("5393eb89457505dc0cea935ef8f3e09b03ecc283234fff38fdf6c8a8d0ccf35a", provider);
 const erc20_rw = new ethers.Contract(address, abi, wallet);
 
 

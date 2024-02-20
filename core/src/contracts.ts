@@ -1,31 +1,28 @@
-import { AddressLike, BaseContract, Contract, ethers, Interface, Provider } from 'ethers'
+import { AddressLike, BaseContract, Contract, ethers, Interface, Provider, Signer } from 'ethers'
 import {
-  ScrollChain,
-  L1GatewayRouter,
-  L2GatewayRouter,
-  L1ScrollMessenger,
-  L2ScrollMessenger,
-  L1ETHGateway,
-  L2ETHGateway,
-  L1WETHGateway,
-  L2WETHGateway,
-  L1StandardERC20Gateway,
-  L2StandardERC20Gateway,
-  L1CustomERC20Gateway,
-  L2CustomERC20Gateway,
-  L1ERC721Gateway,
-  L2ERC721Gateway,
-  L1ERC1155Gateway,
-  L2ERC1155Gateway,
-  L1MessageQueueWithGasPriceOracle,
+  ScrollChain as ScrollChainAddress,
+  L1GatewayRouter as L1GatewayRouterAddress,
+  L2GatewayRouter as L2GatewayRouterAddress,
+  L1ScrollMessenger as L1ScrollMessengerAddress,
+  L2ScrollMessenger as L2ScrollMessengerAddress,
+  L1ETHGateway as L1ETHGatewayAddress,
+  L2ETHGateway as L2ETHGatewayAddress,
+  L1WETHGateway as L1WETHGatewayAddress,
+  L2WETHGateway as L2WETHGatewayAddress,
+  L1StandardERC20Gateway as L1StandardERC20GatewayAddress,
+  L2StandardERC20Gateway as L2StandardERC20GatewayAddress,
+  L1CustomERC20Gateway as L1CustomERC20GatewayAddress,
+  L2CustomERC20Gateway as L2CustomERC20GatewayAddress,
+  L1ERC721Gateway as L1ERC721GatewayAddress,
+  L2ERC721Gateway as L2ERC721GatewayAddress,
+  L1ERC1155Gateway as L1ERC1155GatewayAddress,
+  L2ERC1155Gateway as L2ERC1155GatewayAddress,
+  L1MessageQueueWithGasPriceOracle as L1MessageQueueWithGasPriceOracleAddress,
   L1GasPriceOracle as L1GasPriceOracleAddress,
-  L1MessageQueue,
-  Whitelist,
-  WrappedEther,
-  L2TxFeeVault,
-
-
-
+  L1MessageQueue as L1MessageQueueAddress,
+  Whitelist as WhitelistAddress,
+  WrappedEther as WrappedEtherAddress,
+  L2TxFeeVault as L2TxFeeVaultAddress,
   ScrollChain_testnet,
   L1GatewayRouter_testnet,
   L2GatewayRouter_testnet,
@@ -49,12 +46,16 @@ import {
   Whitelist_testnet,
   WrappedEther_testnet,
   L2TxFeeVault_testnet,
-
-
-  
+  L1ScrollMessenger_testnet,
 } from './addresses'
 
-import { L1GasPriceOracle, L1GasPriceOracle__factory } from '../typechain'
+import {
+  L1GasPriceOracle,
+  L1GasPriceOracle__factory,
+  L1ScrollMessenger__factory,
+  L1ScrollMessenger,
+  L1MessageQueueWithGasPriceOracle__factory,
+} from '../typechain'
 
 export let genContractInternal = (abi: Interface, address: string, provider: Provider) => {
   return new ethers.Contract(address, abi, provider)
@@ -112,7 +113,7 @@ export let genProvider = (url: string) => {
 //   return genContractInternal(L1ETHGateway.abi, L1_ETH_GATEWAY, provider)
 // }
 
-export let genL1GasPriceOracle = (provider: Provider, isTesnet?: boolean): L1GasPriceOracle => {
+export let genL1GasPriceOracle = (provider: Provider | Signer, isTesnet?: boolean): L1GasPriceOracle => {
   if (isTesnet) {
     return L1GasPriceOracle__factory.connect(L1GasPriceOracleAddress, provider)
   }
@@ -132,29 +133,25 @@ export let genL1GasPriceOracle = (provider: Provider, isTesnet?: boolean): L1Gas
 //   return genContractInternal(L1GatewayRouter.abi, L1_GATWAY_ROUTER, provider)
 // }
 
-// export let genL1MessageQueueWithGasPriceOracle = (
-//   provider: Provider,
-//   isTesnet?: boolean
-// ) => {
+export let genL1MessageQueueWithGasPriceOracle = (
+  provider: Provider,
+  isTesnet?: boolean
+) => {
 
-//   if (isTesnet) {
-//     return genContractInternal(L1MessageQueueWithGasPriceOracle.abi, SCROLL_SEOLIA_L1_MESSAGE_QUEUE_WITH_GAS_PRICE_ORACLE, provider)
-//   }
+  if (isTesnet) {
+    return L1MessageQueueWithGasPriceOracle__factory.connect(L1MessageQueueWithGasPriceOracle_testnet, provider)
+  }
 
-//   return genContractInternal(L1MessageQueueWithGasPriceOracle, L1_MESSAGE_QUEUE_WITH_GAS_PRICE_ORACLE, provider)
-// }
+  return L1MessageQueueWithGasPriceOracle__factory.connect(L1MessageQueueWithGasPriceOracleAddress, provider)
+}
 
-// export let genL1ScrollMessenger = (
-//   provider: Provider,
-//   isTesnet?: boolean
-// ) => {
+export let genL1ScrollMessenger = (provider: Provider | Signer, isTesnet?: boolean): L1ScrollMessenger => {
+  if (isTesnet) {
+    return L1ScrollMessenger__factory.connect(L1ScrollMessenger_testnet, provider)
+  }
 
-//   if (isTesnet) {
-//     return genContractInternal(L1ScrollMessenger.abi, SCROLL_SEOLIA_L1_MESSAGER, provider)
-//   }
-
-//   return genContractInternal(L1ScrollMessenger.abi, L1_MESSAGER, provider)
-// }
+  return L1ScrollMessenger__factory.connect(L1ScrollMessengerAddress, provider)
+}
 
 // export let genL1StandardERC20Gateway = (
 //   provider: Provider,

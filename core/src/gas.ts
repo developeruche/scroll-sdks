@@ -1,4 +1,4 @@
-import { BigNumberish, BytesLike, ContractTransaction, ethers, Provider, Signer} from "ethers"
+import { BigNumberish, BytesLike, ContractTransaction, ethers, Provider, Signer, Contract} from "ethers"
 import { genL1GasPriceOracle } from "./contracts";
 import { serialize, UnsignedTransaction } from "@ethersproject/transactions";
 

@@ -1,4 +1,4 @@
-import { AddressLike, BaseContract, Contract, ethers, Interface, Provider } from 'ethers';
+import { AddressLike, ethers, Interface, Provider } from 'ethers';
 import {
   SCROLL_SEOLIA_SCROLL_ROLLUP,
   SCROLL_SEOLIA_L1_GATEWAY_ROUTER,
@@ -51,33 +51,29 @@ import {
 
 
 
-// import L1CustomERC20Gateway from './abi/L1CustomERC20Gateway.json';
-// import L1ERC721Gateway from './abi/L1ERC721Gateway.json';
-// import L1ERC1155Gateway from './abi/L1ERC1155Gateway.json';
-// import L1ETHGateway from './abi/L1ETHGateway.json';
-// import L1GasPriceOracle from './abi/L1GasPriceOracle.json';
-// import L1GatewayRouter from './abi/L1GatewayRouter.json';
-// import L1ScrollMessenger from './abi/L1ScrollMessenger.json';
-// import L1StandardERC20Gateway from './abi/L1StandardERC20Gateway.json';
-// import L1WETHGateway from './abi/L1WETHGateway.json';
-// import L2CustomERC20Gateway from './abi/L2CustomERC20Gateway.json';
-// import L2ERC721Gateway from './abi/L2ERC721Gateway.json';
-// import L2ERC1155Gateway from './abi/L2ERC1155Gateway.json';
-// import L2ETHGateway from './abi/L2ETHGateway.json';
-// import L2GatewayRouter from './abi/L2GatewayRouter.json';
-// import L2MessageQueue from './abi/L2MessageQueue.json';
-// import L2ScrollMessenger from './abi/L2ScrollMessenger.json';
-// import L2StandardERC20Gateway from './abi/L2StandardERC20Gateway.json';
-// import L2TxFeeVault from './abi/L2TxFeeVault.json';
-// import L2WETHGateway from './abi/L2WETHGateway.json';
-// import ScrollChain from './abi/ScrollChain.json';
-// import Whitelist from './abi/Whitelist.json';
-// import WrappedEther from './abi/WrappedEther.json';
-
-
-import  "../typechain"
-import { L1CustomERC20Gateway__factory, L1MessageQueueWithGasPriceOracle } from '../typechain';
-
+import L1CustomERC20Gateway from './abi/L1CustomERC20Gateway.json';
+import L1ERC721Gateway from './abi/L1ERC721Gateway.json';
+import L1ERC1155Gateway from './abi/L1ERC1155Gateway.json';
+import L1ETHGateway from './abi/L1ETHGateway.json';
+import L1GasPriceOracle from './abi/L1GasPriceOracle.json';
+import L1GatewayRouter from './abi/L1GatewayRouter.json';
+import L1MessageQueueWithGasPriceOracle from './abi/L1MessageQueueWithGasPriceOracle.json';
+import L1ScrollMessenger from './abi/L1ScrollMessenger.json';
+import L1StandardERC20Gateway from './abi/L1StandardERC20Gateway.json';
+import L1WETHGateway from './abi/L1WETHGateway.json';
+import L2CustomERC20Gateway from './abi/L2CustomERC20Gateway.json';
+import L2ERC721Gateway from './abi/L2ERC721Gateway.json';
+import L2ERC1155Gateway from './abi/L2ERC1155Gateway.json';
+import L2ETHGateway from './abi/L2ETHGateway.json';
+import L2GatewayRouter from './abi/L2GatewayRouter.json';
+import L2MessageQueue from './abi/L2MessageQueue.json';
+import L2ScrollMessenger from './abi/L2ScrollMessenger.json';
+import L2StandardERC20Gateway from './abi/L2StandardERC20Gateway.json';
+import L2TxFeeVault from './abi/L2TxFeeVault.json';
+import L2WETHGateway from './abi/L2WETHGateway.json';
+import ScrollChain from './abi/ScrollChain.json';
+import Whitelist from './abi/Whitelist.json';
+import WrappedEther from './abi/WrappedEther.json';
 
 
 
@@ -117,7 +113,7 @@ export let genL1CustomERC20Gateway = (
 ) => {
   
   if (isTesnet) {
-    return genContractInternal(L1CustomERC20Gateway__factory, SCROLL_SEOLIA_L1_ERC20_CustomGATEWAY, provider)
+    return genContractInternal(L1CustomERC20Gateway.abi, SCROLL_SEOLIA_L1_ERC20_CustomGATEWAY, provider)
   }
 
   return genContractInternal(L1CustomERC20Gateway.abi, L1_ERC20_CUSTOM_GATEWAY, provider)
@@ -169,7 +165,7 @@ export let genL1GasPriceOracle = (
 ) => {
   
   if (isTesnet) {
-    return genContractInternal(L1GasPriceOracle, SCROLL_SEOLIA_L1_MESSAGE_QUEUE_WITH_GAS_PRICE_ORACLE, provider)
+    return genContractInternal(L1GasPriceOracle.abi, SCROLL_SEOLIA_L1_MESSAGE_QUEUE_WITH_GAS_PRICE_ORACLE, provider)
   }
 
   return genContractInternal(L1GasPriceOracle.abi, GAS_PRICE_ORACLE, provider)
@@ -198,7 +194,7 @@ export let genL1MessageQueueWithGasPriceOracle = (
     return genContractInternal(L1MessageQueueWithGasPriceOracle.abi, SCROLL_SEOLIA_L1_MESSAGE_QUEUE_WITH_GAS_PRICE_ORACLE, provider)
   }
 
-  return genContractInternal(L1MessageQueueWithGasPriceOracle, L1_MESSAGE_QUEUE_WITH_GAS_PRICE_ORACLE, provider)
+  return genContractInternal(L1MessageQueueWithGasPriceOracle.abi, L1_MESSAGE_QUEUE_WITH_GAS_PRICE_ORACLE, provider)
 }
 
 

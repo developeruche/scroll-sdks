@@ -1,5 +1,5 @@
 // Rollup
-export const SCROLL_SEOLIA_SCROLL_ROLLUP = "0x2D567EcE699Eabe5afCd141eDB7A4f2D0D6ce8a0";
+export const ScrollChain_testnet = "0x2D567EcE699Eabe5afCd141eDB7A4f2D0D6ce8a0";
 
 
 // ETH and ERC20 Bridge

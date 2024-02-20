@@ -1,52 +1,57 @@
 import { AddressLike, BaseContract, Contract, ethers, Interface, Provider } from 'ethers'
 import {
-  SCROLL_SEOLIA_SCROLL_ROLLUP,
-  SCROLL_SEOLIA_L1_GATEWAY_ROUTER,
-  SCROLL_SEOLIA_L2_GATEWAY_ROUTER,
-  SCROLL_SEOLIA_L1_MESSAGER,
-  SCROLL_SEOLIA_L2_MESSAGER,
-  SCROLL_SEOLIA_L1_ETH_GATEWAY,
-  SCROLL_SEOLIA_L2_ETH_GATEWAY,
-  SCROLL_SEOLIA_L1_WETH_GATEWAY,
-  SCROLL_SEOLIA_L2_WETH_GATEWAY,
-  SCROLL_SEOLIA_L1_ERC20_StandardGATEWAY,
-  SCROLL_SEOLIA_L2_ERC20_StandardGATEWAY,
-  SCROLL_SEOLIA_L1_ERC20_CustomGATEWAY,
-  SCROLL_SEOLIA_L2_ERC20_CustomGATEWAY,
-  SCROLL_SEOLIA_L2_ERC721_Gateway,
-  SCROLL_SEOLIA_L1_ERC721_Gateway,
-  SCROLL_SEOLIA_L1_ERC1155_GATEWAY,
-  SCROLL_SEOLIA_L2_ERC1155_GATEWAY,
-  SCROLL_SEOLIA_L1_MESSAGE_QUEUE_WITH_GAS_PRICE_ORACLE,
-  SCROLL_SEOLIA_L2_GAS_ORACLE,
-  SCROLL_SEOLIA_MESSAGE_QUEUE,
-  SCROLL_SEOLIA_GAS_PRICE_ORACLE,
-  SCROLL_SEOLIA_WHITELIST,
-  SCROLL_SEOLIA_WETH_L2,
-  SCROLL_SEOLIA_TRANSACTION_FEE_VAULT,
-  SROLL_ROLLUP,
-  L1_GATWAY_ROUTER,
-  L2_GATWAY_ROUTER,
-  L1_MESSAGER,
-  L2_MESSAGER,
-  L1_ETH_GATEWAY,
-  L2_ETH_GATEWAY,
-  L1_WETH_GATEWAY,
-  L2_WETH_GATEWAY,
-  L1_ERC20_STANDARD_GATEWAY,
-  L2_ERC20_STANDARD_GATEWAY,
-  L1_ERC20_CUSTOM_GATEWAY,
-  L2_ERC20_CUSTOM_GATEWAY,
-  L1_ERC721_GATEWAY,
-  L2_ERC721_GATEWAY,
-  L1_ERC1155_GATEWAY,
-  L2_ERC1155_GATEWAY,
-  L1_MESSAGE_QUEUE_WITH_GAS_PRICE_ORACLE,
-  MESSAGE_QUEUE,
-  GAS_PRICE_ORACLE,
-  WHITELIST,
-  WETH_L2,
-  TRANSACTION_FEE_VAULT,
+  ScrollChain,
+  L1GatewayRouter,
+  L2GatewayRouter,
+  L1ScrollMessenger,
+  L2ScrollMessenger,
+  L1ETHGateway,
+  L2ETHGateway,
+  L1WETHGateway,
+  L2WETHGateway,
+  L1StandardERC20Gateway,
+  L2StandardERC20Gateway,
+  L1CustomERC20Gateway,
+  L2CustomERC20Gateway,
+  L1ERC721Gateway,
+  L2ERC721Gateway,
+  L1ERC1155Gateway,
+  L2ERC1155Gateway,
+  L1MessageQueueWithGasPriceOracle,
+  L1GasPriceOracle as L1GasPriceOracleAddress,
+  L1MessageQueue,
+  Whitelist,
+  WrappedEther,
+  L2TxFeeVault,
+
+
+
+  ScrollChain_testnet,
+  L1GatewayRouter_testnet,
+  L2GatewayRouter_testnet,
+  // L1ScrollMessenger_testnet,
+  // L2ScrollMessenger_testnet,
+  L1ETHGateway_testnet,
+  L2ETHGateway_testnet,
+  L1WETHGateway_testnet,
+  L2WETHGateway_testnet,
+  L1StandardERC20Gateway_testnet,
+  L2StandardERC20Gateway_testnet,
+  L1CustomERC20Gateway_testnet,
+  L2CustomERC20Gateway_testnet,
+  L1ERC721Gateway_testnet,
+  L2ERC721Gateway_testnet,
+  L1ERC1155Gateway_testnet,
+  L2ERC1155Gateway_testnet,
+  L1MessageQueueWithGasPriceOracle_testnet,
+  L1GasPriceOracle_testnet as L1GasPriceOracleAddress_testnet,
+  L1MessageQueue_testnet,
+  Whitelist_testnet,
+  WrappedEther_testnet,
+  L2TxFeeVault_testnet,
+
+
+  
 } from './addresses'
 
 import { L1GasPriceOracle, L1GasPriceOracle__factory } from '../typechain'
@@ -109,10 +114,10 @@ export let genProvider = (url: string) => {
 
 export let genL1GasPriceOracle = (provider: Provider, isTesnet?: boolean): L1GasPriceOracle => {
   if (isTesnet) {
-    return L1GasPriceOracle__factory.connect(SCROLL_SEOLIA_GAS_PRICE_ORACLE, provider)
+    return L1GasPriceOracle__factory.connect(L1GasPriceOracleAddress, provider)
   }
 
-  return L1GasPriceOracle__factory.connect(GAS_PRICE_ORACLE, provider)
+  return L1GasPriceOracle__factory.connect(L1GasPriceOracleAddress_testnet, provider)
 }
 
 // export let genL1GatewayRouter = (

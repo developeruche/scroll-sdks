@@ -1,4 +1,4 @@
-import { AddressLike, BaseContract, Contract, ethers, Interface, Provider } from 'ethers';
+import { AddressLike, ethers, Interface, Provider } from 'ethers';
 import {
   SCROLL_SEOLIA_SCROLL_ROLLUP,
   SCROLL_SEOLIA_L1_GATEWAY_ROUTER,
@@ -51,6 +51,7 @@ import {
 
 
 
+
 import {
   L1GasPriceOracle,
   L1GasPriceOracle__factory,
@@ -94,9 +95,11 @@ export let genProvider = (url: string) => {
 //   isTesnet?: boolean
 // ) => {
   
+
 //   if (isTesnet) {
 //     return genContractInternal(L1CustomERC20Gateway__factory, SCROLL_SEOLIA_L1_ERC20_CustomGATEWAY, provider)
 //   }
+
 
 //   return genContractInternal(L1CustomERC20Gateway.abi, L1_ERC20_CUSTOM_GATEWAY, provider)
 // }
@@ -149,7 +152,6 @@ export let genL1GasPriceOracle = (
   if (isTesnet) {
     return L1GasPriceOracle__factory.connect(SCROLL_SEOLIA_GAS_PRICE_ORACLE, provider)
   }
-
   return L1GasPriceOracle__factory.connect(GAS_PRICE_ORACLE, provider)
 }
 
@@ -178,6 +180,7 @@ export let genL1GasPriceOracle = (
 
 //   return genContractInternal(L1MessageQueueWithGasPriceOracle, L1_MESSAGE_QUEUE_WITH_GAS_PRICE_ORACLE, provider)
 // }
+
 
 
 // export let genL1ScrollMessenger = (

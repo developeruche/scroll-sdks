@@ -71,7 +71,7 @@ export let genL1CustomERC20Gateway = (
 ) => {
 
   if (isTesnet) {
-    return L1CustomERC20Gateway__factory.connect(L1CustomERC20Gateway, provider)
+    return L1CustomERC20Gateway__factory.connect(L1CustomERC20GatewayAddress, provider)
   }
 
   return L1CustomERC20Gateway__factory.connect(L1CustomERC20Gateway_testnet, provider)
@@ -83,7 +83,7 @@ export let genL1ERC721Gateway = (
 ) => {
 
   if (isTesnet) {
-    return L1ERC721Gateway__factory.connect(L1ERC721Gateway, provider)
+    return L1ERC721Gateway__factory.connect(L1ERC721GatewayAddress, provider)
   }
 
   return L1ERC721Gateway__factory.connect(L1ERC721Gateway_testnet, provider)
@@ -95,7 +95,7 @@ export let genL1ERC1155Gateway = (
 ) => {
 
   if (isTesnet) {
-    return L1ERC1155Gateway__factory.connect(L1ERC1155Gateway, provider)
+    return L1ERC1155Gateway__factory.connect(L1ERC1155GatewayAddress, provider)
   }
 
   return L1ERC1155Gateway__factory.connect(L1ERC1155Gateway_testnet, provider)
@@ -107,7 +107,7 @@ export let genL1ETHGateway = (
 ) => {
 
   if (isTesnet) {
-    return L1ETHGateway__factory.connect(L1ETHGateway, provider)
+    return L1ETHGateway__factory.connect(L1ETHGatewayAddress, provider)
   }
 
   return L1ETHGateway__factory.connect(L1ETHGateway_testnet, provider)
@@ -129,7 +129,7 @@ export let genL1GatewayRouter = (
 ) => {
 
   if (isTesnet) {
-    return L1GatewayRouter__factory.connect(L1GatewayRouter, provider)
+    return L1GatewayRouter__factory.connect(L1GatewayRouterAddress, provider)
   }
 
   return L1GatewayRouter__factory.connect(L1GatewayRouter_testnet, provider)
@@ -142,7 +142,7 @@ export let genL1MessageQueueWithGasPriceOracle = (
 
 
   if (isTesnet) {
-    return L1MessageQueueWithGasPriceOracle__factory.connect(L1MessageQueueWithGasPriceOracle, provider)
+    return L1MessageQueueWithGasPriceOracle__factory.connect(L1MessageQueueWithGasPriceOracleAddress, provider)
   }
 
   return L1MessageQueueWithGasPriceOracle__factory.connect(L1MessageQueueWithGasPriceOracle_testnet, provider)
@@ -154,7 +154,7 @@ export let genL1ScrollMessenger = (
 ) => {
 
   if (isTesnet) {
-    return L1ScrollMessenger__factory.connect(L1ScrollMessenger, provider)
+    return L1ScrollMessenger__factory.connect(L1ScrollMessengerAddress, provider)
   }
 
   return L1ScrollMessenger__factory.connect(L1ScrollMessenger_testnet, provider)
@@ -167,7 +167,7 @@ export let genL1StandardERC20Gateway = (
 ) => {
 
   if (isTesnet) {
-    return L1StandardERC20Gateway__factory.connect(L1StandardERC20Gateway, provider)
+    return L1StandardERC20Gateway__factory.connect(L1StandardERC20GatewayAddress, provider)
   }
 
   return L1StandardERC20Gateway__factory.connect(L1StandardERC20Gateway_testnet, provider)
@@ -179,7 +179,7 @@ export let genL1WETHGateway = (
 ) => {
 
   if (isTesnet) {
-    return L1WETHGateway__factory.connect(L1WETHGateway, provider)
+    return L1WETHGateway__factory.connect(L1WETHGatewayAddress, provider)
   }
 
   return L1WETHGateway__factory.connect(L1WETHGateway_testnet, provider)
@@ -191,7 +191,7 @@ export let genL2CustomERC20Gateway = (
 ) => {
 
   if (isTesnet) {
-    return L2CustomERC20Gateway__factory.connect(L2CustomERC20Gateway, provider)
+    return L2CustomERC20Gateway__factory.connect(L2CustomERC20GatewayAddress, provider)
   }
 
   return L2CustomERC20Gateway__factory.connect(L2CustomERC20Gateway_testnet, provider)
@@ -203,7 +203,7 @@ export let genL2ERC721Gateway = (
 ) => {
 
   if (isTesnet) {
-    return L2ERC721Gateway__factory.connect(L2ERC721Gateway, provider)
+    return L2ERC721Gateway__factory.connect(L2ERC721GatewayAddress, provider)
   }
 
   return L2ERC721Gateway__factory.connect(L2ERC721Gateway_testnet, provider)
@@ -215,7 +215,7 @@ export let genL2ERC1155Gateway = (
 ) => {
 
   if (isTesnet) {
-    return L2ERC1155Gateway__factory.connect(L2ERC1155Gateway, provider)
+    return L2ERC1155Gateway__factory.connect(L2ERC1155GatewayAddress, provider)
   }
 
   return L2ERC1155Gateway__factory.connect(L2ERC1155Gateway_testnet, provider)
@@ -227,7 +227,7 @@ export let genL2ETHGateway = (
 ) => {
 
   if (isTesnet) {
-    return L2ETHGateway__factory.connect(L2ETHGateway, provider)
+    return L2ETHGateway__factory.connect(L2ETHGatewayAddress, provider)
   }
 
   return L2ETHGateway__factory.connect(L2ETHGateway_testnet, provider)
@@ -239,7 +239,7 @@ export let genL2GatewayRouter = (
 ) => {
 
   if (isTesnet) {
-    return L2GatewayRouter__factory.connect(L2GatewayRouter, provider)
+    return L2GatewayRouter__factory.connect(L2GatewayRouterAddress, provider)
   }
 
   return L2GatewayRouter__factory.connect(L2GatewayRouter_testnet, provider)
@@ -263,7 +263,7 @@ export let genL2ScrollMessenger = (
 ) => {
 
   if (isTesnet) {
-    return L2ScrollMessenger__factory.connect(L2ScrollMessenger, provider)
+    return L2ScrollMessenger__factory.connect(L2ScrollMessengerAddress, provider)
   }
 
   return L2ScrollMessenger__factory.connect(L2ScrollMessenger_testnet, provider)
@@ -275,7 +275,7 @@ export let genL2StandardERC20Gateway = (
 ) => {
 
   if (isTesnet) {
-    return L2StandardERC20Gateway__factory.connect(L2StandardERC20Gateway, provider)
+    return L2StandardERC20Gateway__factory.connect(L2StandardERC20GatewayAddress, provider)
   }
 
   return L2StandardERC20Gateway__factory.connect(L2StandardERC20Gateway_testnet, provider)
@@ -299,7 +299,7 @@ export let genL2WETHGateway = (
 ) => {
 
   if (isTesnet) {
-    return L2WETHGateway__factory.connect(L2WETHGateway, provider)
+    return L2WETHGateway__factory.connect(L2WETHGatewayAddress, provider)
   }
 
   return L2WETHGateway__factory.connect(L2WETHGateway_testnet, provider)
@@ -311,7 +311,7 @@ export let genScrollChain = (
 ) => {
 
   if (isTesnet) {
-    return ScrollChain__factory.connect(ScrollChain, provider)
+    return ScrollChain__factory.connect(ScrollChainAddress, provider)
   }
 
   return ScrollChain__factory.connect(ScrollChain_testnet, provider)

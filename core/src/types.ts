@@ -1,3 +1,3 @@
 export interface IHelloWorld {
-    hello_world: () => void;
+  hello_world: () => void
 }

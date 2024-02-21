@@ -1,29 +1,29 @@
-import { AddressLike, BaseContract, Contract, ethers, Interface, Provider } from 'ethers'
+import { AddressLike, BaseContract, Contract, ethers, Interface, Provider, Signer } from 'ethers'
 import {
-  ScrollChain,
-  L1GatewayRouter,
-  L2GatewayRouter,
-  L1ScrollMessenger,
-  L2ScrollMessenger,
-  L1ETHGateway,
-  L2ETHGateway,
-  L1WETHGateway,
-  L2WETHGateway,
-  L1StandardERC20Gateway,
-  L2StandardERC20Gateway,
-  L1CustomERC20Gateway,
-  L2CustomERC20Gateway,
-  L1ERC721Gateway,
-  L2ERC721Gateway,
-  L1ERC1155Gateway,
-  L2ERC1155Gateway,
-  L1MessageQueueWithGasPriceOracle,
+  ScrollChain as ScrollChainAddress,
+  L1GatewayRouter as L1GatewayRouterAddress,
+  L2GatewayRouter as L2GatewayRouterAddress,
+  L1ScrollMessenger as L1ScrollMessengerAddress,
+  L2ScrollMessenger as L2ScrollMessengerAddress,
+  L1ETHGateway as L1ETHGatewayAddress,
+  L2ETHGateway as L2ETHGatewayAddress,
+  L1WETHGateway as L1WETHGatewayAddress,
+  L2WETHGateway as L2WETHGatewayAddress,
+  L1StandardERC20Gateway as L1StandardERC20GatewayAddress,
+  L2StandardERC20Gateway as L2StandardERC20GatewayAddress,
+  L1CustomERC20Gateway as L1CustomERC20GatewayAddress,
+  L2CustomERC20Gateway as L2CustomERC20GatewayAddress,
+  L1ERC721Gateway as L1ERC721GatewayAddress,
+  L2ERC721Gateway as L2ERC721GatewayAddress,
+  L1ERC1155Gateway as L1ERC1155GatewayAddress,
+  L2ERC1155Gateway as L2ERC1155GatewayAddress,
+  L1MessageQueueWithGasPriceOracle as L1MessageQueueWithGasPriceOracleAddress,
   L1GasPriceOracle as L1GasPriceOracleAddress,
+
   L2MessageQueue,
   Whitelist,
   WrappedEther,
   L2TxFeeVault,
-
 
 
   ScrollChain_testnet,
@@ -55,6 +55,7 @@ import {
 } from './addresses'
 
 import { L1CustomERC20Gateway__factory, L1ERC1155Gateway__factory, L1ERC721Gateway__factory, L1ETHGateway__factory, L1GasPriceOracle as L1GasPriceOracleInterface, L1GasPriceOracle__factory, L1GatewayRouter__factory, L1MessageQueueWithGasPriceOracle__factory, L1ScrollMessenger__factory, L1StandardERC20Gateway__factory, L1WETHGateway__factory, L2CustomERC20Gateway__factory, L2ERC1155Gateway__factory, L2ERC721Gateway__factory, L2ETHGateway__factory, L2GatewayRouter__factory, L2MessageQueue__factory, L2ScrollMessenger__factory, L2StandardERC20Gateway__factory, L2TxFeeVault__factory, L2WETHGateway__factory, ScrollChain__factory, Whitelist__factory, WrappedEther__factory } from '../typechain'
+
 
 export let genContractInternal = (abi: Interface, address: string, provider: Provider) => {
   return new ethers.Contract(address, abi, provider)
@@ -112,7 +113,9 @@ export let genL1ETHGateway = (
   return L1ETHGateway__factory.connect(L1ETHGateway_testnet, provider)
 }
 
+
 export let genL1GasPriceOracle = (provider: Provider, isTesnet?: boolean): L1GasPriceOracleInterface => {
+
   if (isTesnet) {
     return L1GasPriceOracle__factory.connect(L1GasPriceOracleAddress, provider)
   }
@@ -137,6 +140,7 @@ export let genL1MessageQueueWithGasPriceOracle = (
   isTesnet?: boolean
 ) => {
 
+
   if (isTesnet) {
     return L1MessageQueueWithGasPriceOracle__factory.connect(L1MessageQueueWithGasPriceOracle, provider)
   }
@@ -154,6 +158,7 @@ export let genL1ScrollMessenger = (
   }
 
   return L1ScrollMessenger__factory.connect(L1ScrollMessenger_testnet, provider)
+
 }
 
 export let genL1StandardERC20Gateway = (

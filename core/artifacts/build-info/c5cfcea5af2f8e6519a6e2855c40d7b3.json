@@ -26,9 +26,7 @@
             "devdoc",
             "userdoc"
           ],
-          "": [
-            "ast"
-          ]
+          "": ["ast"]
         }
       }
     }
@@ -1051,9 +1049,7 @@
         "ast": {
           "absolutePath": "src/mocks/MockCaller.sol",
           "exportedSymbols": {
-            "MockCaller": [
-              28
-            ]
+            "MockCaller": [28]
           },
           "id": 29,
           "license": "MIT",
@@ -1061,12 +1057,7 @@
           "nodes": [
             {
               "id": 1,
-              "literals": [
-                "solidity",
-                "=",
-                "0.8",
-                ".16"
-              ],
+              "literals": ["solidity", "=", "0.8", ".16"],
               "nodeType": "PragmaDirective",
               "src": "33:24:0"
             },
@@ -1078,9 +1069,7 @@
               "contractKind": "contract",
               "fullyImplemented": true,
               "id": 28,
-              "linearizedBaseContracts": [
-                28
-              ],
+              "linearizedBaseContracts": [28],
               "name": "MockCaller",
               "nameLocation": "68:10:0",
               "nodeType": "ContractDefinition",
@@ -1092,10 +1081,7 @@
                     "src": "155:429:0",
                     "statements": [
                       {
-                        "assignments": [
-                          9,
-                          null
-                        ],
+                        "assignments": [9, null],
                         "declarations": [
                           {
                             "constant": false,
@@ -1232,9 +1218,7 @@
                             "isLValue": false,
                             "isPure": false,
                             "lValueRequested": false,
-                            "names": [
-                              "value"
-                            ],
+                            "names": ["value"],
                             "nodeType": "FunctionCallOptions",
                             "options": [
                               {

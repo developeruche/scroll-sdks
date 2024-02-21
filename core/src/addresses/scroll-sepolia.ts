@@ -11,8 +11,8 @@ export const L2GatewayRouter_testnet = "0x9aD3c5617eCAa556d6E166787A970819071712
 
 
 // Scroll Messenger
-export const L1ScrollMessenge_testnet = "0x50c7d3e7f7c656493D1D76aaa1a836CedfCBB16A";
-export const L2ScrollMessenge_testnet = "0xBa50f5340FB9F3Bd074bD638c9BE13eCB36E603d";
+export const L1ScrollMessenger_testnet = "0x50c7d3e7f7c656493D1D76aaa1a836CedfCBB16A";
+export const L2ScrollMessenger_testnet = "0xBa50f5340FB9F3Bd074bD638c9BE13eCB36E603d";
 
 
 // ETH Bridge
@@ -51,7 +51,7 @@ export const L2GasPriceOracle_testnet = "0x247969F4fad93a33d4826046bc3eAE0D36BdE
 
 
 // L2 Predeploys
-export const L1MessageQueue_testnet = "0x5300000000000000000000000000000000000000";
+export const L2MessageQueue_testnet = "0x5300000000000000000000000000000000000000";
 export const L1GasPriceOracle_testnet = "0x5300000000000000000000000000000000000002";
 export const Whitelist_testnet = "0x5300000000000000000000000000000000000003";
 export const WrappedEther_testnet = "0x5300000000000000000000000000000000000004";

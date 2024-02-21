@@ -19,7 +19,7 @@ import {
   L2ERC1155Gateway,
   L1MessageQueueWithGasPriceOracle,
   L1GasPriceOracle as L1GasPriceOracleAddress,
-  L1MessageQueue,
+  L2MessageQueue,
   Whitelist,
   WrappedEther,
   L2TxFeeVault,
@@ -29,8 +29,6 @@ import {
   ScrollChain_testnet,
   L1GatewayRouter_testnet,
   L2GatewayRouter_testnet,
-  // L1ScrollMessenger_testnet,
-  // L2ScrollMessenger_testnet,
   L1ETHGateway_testnet,
   L2ETHGateway_testnet,
   L1WETHGateway_testnet,
@@ -45,16 +43,18 @@ import {
   L2ERC1155Gateway_testnet,
   L1MessageQueueWithGasPriceOracle_testnet,
   L1GasPriceOracle_testnet as L1GasPriceOracleAddress_testnet,
-  L1MessageQueue_testnet,
+  L2MessageQueue_testnet,
   Whitelist_testnet,
   WrappedEther_testnet,
   L2TxFeeVault_testnet,
+  L1ScrollMessenger_testnet,
+  L2ScrollMessenger_testnet,
 
 
   
 } from './addresses'
 
-import { L1GasPriceOracle, L1GasPriceOracle__factory } from '../typechain'
+import { L1CustomERC20Gateway__factory, L1ERC1155Gateway__factory, L1ERC721Gateway__factory, L1ETHGateway__factory, L1GasPriceOracle as L1GasPriceOracleInterface, L1GasPriceOracle__factory, L1GatewayRouter__factory, L1MessageQueueWithGasPriceOracle__factory, L1ScrollMessenger__factory, L1StandardERC20Gateway__factory, L1WETHGateway__factory, L2CustomERC20Gateway__factory, L2ERC1155Gateway__factory, L2ERC721Gateway__factory, L2ETHGateway__factory, L2GatewayRouter__factory, L2MessageQueue__factory, L2ScrollMessenger__factory, L2StandardERC20Gateway__factory, L2TxFeeVault__factory, L2WETHGateway__factory, ScrollChain__factory, Whitelist__factory, WrappedEther__factory } from '../typechain'
 
 export let genContractInternal = (abi: Interface, address: string, provider: Provider) => {
   return new ethers.Contract(address, abi, provider)
@@ -64,55 +64,55 @@ export let genProvider = (url: string) => {
   return new ethers.JsonRpcProvider(url)
 }
 
-// export let genL1CustomERC20Gateway = (
-//   provider: Provider,
-//   isTesnet?: boolean
-// ) => {
+export let genL1CustomERC20Gateway = (
+  provider: Provider,
+  isTesnet?: boolean
+) => {
 
-//   if (isTesnet) {
-//     return genContractInternal(L1CustomERC20Gateway__factory, SCROLL_SEOLIA_L1_ERC20_CustomGATEWAY, provider)
-//   }
+  if (isTesnet) {
+    return L1CustomERC20Gateway__factory.connect(L1CustomERC20Gateway, provider)
+  }
 
-//   return genContractInternal(L1CustomERC20Gateway.abi, L1_ERC20_CUSTOM_GATEWAY, provider)
-// }
+  return L1CustomERC20Gateway__factory.connect(L1CustomERC20Gateway_testnet, provider)
+}
 
-// export let genL1ERC721Gateway = (
-//   provider: Provider,
-//   isTesnet?: boolean
-// ) => {
+export let genL1ERC721Gateway = (
+  provider: Provider,
+  isTesnet?: boolean
+) => {
 
-//   if (isTesnet) {
-//     return genContractInternal(L1ERC721Gateway.abi, SCROLL_SEOLIA_L1_ERC721_Gateway, provider)
-//   }
+  if (isTesnet) {
+    return L1ERC721Gateway__factory.connect(L1ERC721Gateway, provider)
+  }
 
-//   return genContractInternal(L1ERC721Gateway.abi, L1_ERC721_GATEWAY, provider)
-// }
+  return L1ERC721Gateway__factory.connect(L1ERC721Gateway_testnet, provider)
+}
 
-// export let genL1ERC1155Gateway = (
-//   provider: Provider,
-//   isTesnet?: boolean
-// ) => {
+export let genL1ERC1155Gateway = (
+  provider: Provider,
+  isTesnet?: boolean
+) => {
 
-//   if (isTesnet) {
-//     return genContractInternal(L1ERC1155Gateway.abi, SCROLL_SEOLIA_L1_ERC1155_GATEWAY, provider)
-//   }
+  if (isTesnet) {
+    return L1ERC1155Gateway__factory.connect(L1ERC1155Gateway, provider)
+  }
 
-//   return genContractInternal(L1ERC1155Gateway.abi, L1_ERC1155_GATEWAY, provider)
-// }
+  return L1ERC1155Gateway__factory.connect(L1ERC1155Gateway_testnet, provider)
+}
 
-// export let genL1ETHGateway = (
-//   provider: Provider,
-//   isTesnet?: boolean
-// ) => {
+export let genL1ETHGateway = (
+  provider: Provider,
+  isTesnet?: boolean
+) => {
 
-//   if (isTesnet) {
-//     return genContractInternal(L1ETHGateway.abi, SCROLL_SEOLIA_L1_ETH_GATEWAY, provider)
-//   }
+  if (isTesnet) {
+    return L1ETHGateway__factory.connect(L1ETHGateway, provider)
+  }
 
-//   return genContractInternal(L1ETHGateway.abi, L1_ETH_GATEWAY, provider)
-// }
+  return L1ETHGateway__factory.connect(L1ETHGateway_testnet, provider)
+}
 
-export let genL1GasPriceOracle = (provider: Provider, isTesnet?: boolean): L1GasPriceOracle => {
+export let genL1GasPriceOracle = (provider: Provider, isTesnet?: boolean): L1GasPriceOracleInterface => {
   if (isTesnet) {
     return L1GasPriceOracle__factory.connect(L1GasPriceOracleAddress, provider)
   }
@@ -120,218 +120,218 @@ export let genL1GasPriceOracle = (provider: Provider, isTesnet?: boolean): L1Gas
   return L1GasPriceOracle__factory.connect(L1GasPriceOracleAddress_testnet, provider)
 }
 
-// export let genL1GatewayRouter = (
-//   provider: Provider,
-//   isTesnet?: boolean
-// ) => {
+export let genL1GatewayRouter = (
+  provider: Provider,
+  isTesnet?: boolean
+) => {
 
-//   if (isTesnet) {
-//     return genContractInternal(L1GatewayRouter.abi, SCROLL_SEOLIA_L1_GATEWAY_ROUTER, provider)
-//   }
+  if (isTesnet) {
+    return L1GatewayRouter__factory.connect(L1GatewayRouter, provider)
+  }
 
-//   return genContractInternal(L1GatewayRouter.abi, L1_GATWAY_ROUTER, provider)
-// }
+  return L1GatewayRouter__factory.connect(L1GatewayRouter_testnet, provider)
+}
 
-// export let genL1MessageQueueWithGasPriceOracle = (
-//   provider: Provider,
-//   isTesnet?: boolean
-// ) => {
+export let genL1MessageQueueWithGasPriceOracle = (
+  provider: Provider,
+  isTesnet?: boolean
+) => {
 
-//   if (isTesnet) {
-//     return genContractInternal(L1MessageQueueWithGasPriceOracle.abi, SCROLL_SEOLIA_L1_MESSAGE_QUEUE_WITH_GAS_PRICE_ORACLE, provider)
-//   }
+  if (isTesnet) {
+    return L1MessageQueueWithGasPriceOracle__factory.connect(L1MessageQueueWithGasPriceOracle, provider)
+  }
 
-//   return genContractInternal(L1MessageQueueWithGasPriceOracle, L1_MESSAGE_QUEUE_WITH_GAS_PRICE_ORACLE, provider)
-// }
+  return L1MessageQueueWithGasPriceOracle__factory.connect(L1MessageQueueWithGasPriceOracle_testnet, provider)
+}
 
-// export let genL1ScrollMessenger = (
-//   provider: Provider,
-//   isTesnet?: boolean
-// ) => {
+export let genL1ScrollMessenger = (
+  provider: Provider,
+  isTesnet?: boolean
+) => {
 
-//   if (isTesnet) {
-//     return genContractInternal(L1ScrollMessenger.abi, SCROLL_SEOLIA_L1_MESSAGER, provider)
-//   }
+  if (isTesnet) {
+    return L1ScrollMessenger__factory.connect(L1ScrollMessenger, provider)
+  }
 
-//   return genContractInternal(L1ScrollMessenger.abi, L1_MESSAGER, provider)
-// }
+  return L1ScrollMessenger__factory.connect(L1ScrollMessenger_testnet, provider)
+}
 
-// export let genL1StandardERC20Gateway = (
-//   provider: Provider,
-//   isTesnet?: boolean
-// ) => {
+export let genL1StandardERC20Gateway = (
+  provider: Provider,
+  isTesnet?: boolean
+) => {
 
-//   if (isTesnet) {
-//     return genContractInternal(L1StandardERC20Gateway.abi, SCROLL_SEOLIA_L1_ERC20_StandardGATEWAY, provider)
-//   }
+  if (isTesnet) {
+    return L1StandardERC20Gateway__factory.connect(L1StandardERC20Gateway, provider)
+  }
 
-//   return genContractInternal(L1StandardERC20Gateway.abi, L1_ERC20_STANDARD_GATEWAY, provider)
-// }
+  return L1StandardERC20Gateway__factory.connect(L1StandardERC20Gateway_testnet, provider)
+}
 
-// export let genL1WETHGateway = (
-//   provider: Provider,
-//   isTesnet?: boolean
-// ) => {
+export let genL1WETHGateway = (
+  provider: Provider,
+  isTesnet?: boolean
+) => {
 
-//   if (isTesnet) {
-//     return genContractInternal(L1WETHGateway.abi, SCROLL_SEOLIA_L1_WETH_GATEWAY, provider)
-//   }
+  if (isTesnet) {
+    return L1WETHGateway__factory.connect(L1WETHGateway, provider)
+  }
 
-//   return genContractInternal(L1WETHGateway.abi, L1_WETH_GATEWAY, provider)
-// }
+  return L1WETHGateway__factory.connect(L1WETHGateway_testnet, provider)
+}
 
-// export let genL2CustomERC20Gateway = (
-//   provider: Provider,
-//   isTesnet?: boolean
-// ) => {
+export let genL2CustomERC20Gateway = (
+  provider: Provider,
+  isTesnet?: boolean
+) => {
 
-//   if (isTesnet) {
-//     return genContractInternal(L2CustomERC20Gateway.abi, SCROLL_SEOLIA_L2_ERC20_CustomGATEWAY, provider)
-//   }
+  if (isTesnet) {
+    return L2CustomERC20Gateway__factory.connect(L2CustomERC20Gateway, provider)
+  }
 
-//   return genContractInternal(L2CustomERC20Gateway.abi, L2_ERC20_CUSTOM_GATEWAY, provider)
-// }
+  return L2CustomERC20Gateway__factory.connect(L2CustomERC20Gateway_testnet, provider)
+}
 
-// export let genL2ERC721Gateway = (
-//   provider: Provider,
-//   isTesnet?: boolean
-// ) => {
+export let genL2ERC721Gateway = (
+  provider: Provider,
+  isTesnet?: boolean
+) => {
 
-//   if (isTesnet) {
-//     return genContractInternal(L2ERC721Gateway.abi, SCROLL_SEOLIA_L2_ERC721_Gateway, provider)
-//   }
+  if (isTesnet) {
+    return L2ERC721Gateway__factory.connect(L2ERC721Gateway, provider)
+  }
 
-//   return genContractInternal(L2ERC721Gateway.abi, L2_ERC721_GATEWAY, provider)
-// }
+  return L2ERC721Gateway__factory.connect(L2ERC721Gateway_testnet, provider)
+}
 
-// export let genL2ERC1155Gateway = (
-//   provider: Provider,
-//   isTesnet?: boolean
-// ) => {
+export let genL2ERC1155Gateway = (
+  provider: Provider,
+  isTesnet?: boolean
+) => {
 
-//   if (isTesnet) {
-//     return genContractInternal(L2ERC1155Gateway.abi, SCROLL_SEOLIA_L2_ERC1155_GATEWAY, provider)
-//   }
+  if (isTesnet) {
+    return L2ERC1155Gateway__factory.connect(L2ERC1155Gateway, provider)
+  }
 
-//   return genContractInternal(L2ERC1155Gateway.abi, L2_ERC1155_GATEWAY, provider)
-// }
+  return L2ERC1155Gateway__factory.connect(L2ERC1155Gateway_testnet, provider)
+}
 
-// export let genL2ETHGateway = (
-//   provider: Provider,
-//   isTesnet?: boolean
-// ) => {
+export let genL2ETHGateway = (
+  provider: Provider,
+  isTesnet?: boolean
+) => {
 
-//   if (isTesnet) {
-//     return genContractInternal(L2ETHGateway.abi, SCROLL_SEOLIA_L2_ETH_GATEWAY, provider)
-//   }
+  if (isTesnet) {
+    return L2ETHGateway__factory.connect(L2ETHGateway, provider)
+  }
 
-//   return genContractInternal(L2ETHGateway.abi, L2_ETH_GATEWAY, provider)
-// }
+  return L2ETHGateway__factory.connect(L2ETHGateway_testnet, provider)
+}
 
-// export let genL2GatewayRouter = (
-//   provider: Provider,
-//   isTesnet?: boolean
-// ) => {
+export let genL2GatewayRouter = (
+  provider: Provider,
+  isTesnet?: boolean
+) => {
 
-//   if (isTesnet) {
-//     return genContractInternal(L2GatewayRouter.abi, SCROLL_SEOLIA_L2_GATEWAY_ROUTER, provider)
-//   }
+  if (isTesnet) {
+    return L2GatewayRouter__factory.connect(L2GatewayRouter, provider)
+  }
 
-//   return genContractInternal(L2GatewayRouter.abi, L2_GATWAY_ROUTER, provider)
-// }
+  return L2GatewayRouter__factory.connect(L2GatewayRouter_testnet, provider)
+}
 
-// export let genL2MessageQueue = (
-//   provider: Provider,
-//   isTesnet?: boolean
-// ) => {
+export let genL2MessageQueue = (
+  provider: Provider,
+  isTesnet?: boolean
+) => {
 
-//   if (isTesnet) {
-//     return genContractInternal(L2MessageQueue.abi, SCROLL_SEOLIA_MESSAGE_QUEUE, provider)
-//   }
+  if (isTesnet) {
+    return L2MessageQueue__factory.connect(L2MessageQueue, provider)
+  }
 
-//   return genContractInternal(L2MessageQueue.abi, MESSAGE_QUEUE, provider)
-// }
+  return L2MessageQueue__factory.connect(L2MessageQueue_testnet, provider)
+}
 
-// export let genL2ScrollMessenger = (
-//   provider: Provider,
-//   isTesnet?: boolean
-// ) => {
+export let genL2ScrollMessenger = (
+  provider: Provider,
+  isTesnet?: boolean
+) => {
 
-//   if (isTesnet) {
-//     return genContractInternal(L2ScrollMessenger.abi, SCROLL_SEOLIA_L2_MESSAGER, provider)
-//   }
+  if (isTesnet) {
+    return L2ScrollMessenger__factory.connect(L2ScrollMessenger, provider)
+  }
 
-//   return genContractInternal(L2ScrollMessenger.abi, L2_MESSAGER, provider)
-// }
+  return L2ScrollMessenger__factory.connect(L2ScrollMessenger_testnet, provider)
+}
 
-// export let genL2StandardERC20Gateway = (
-//   provider: Provider,
-//   isTesnet?: boolean
-// ) => {
+export let genL2StandardERC20Gateway = (
+  provider: Provider,
+  isTesnet?: boolean
+) => {
 
-//   if (isTesnet) {
-//     return genContractInternal(L2StandardERC20Gateway.abi, SCROLL_SEOLIA_L2_ERC20_StandardGATEWAY, provider)
-//   }
+  if (isTesnet) {
+    return L2StandardERC20Gateway__factory.connect(L2StandardERC20Gateway, provider)
+  }
 
-//   return genContractInternal(L2StandardERC20Gateway.abi, L2_ERC20_STANDARD_GATEWAY, provider)
-// }
+  return L2StandardERC20Gateway__factory.connect(L2StandardERC20Gateway_testnet, provider)
+}
 
-// export let genL2TxFeeVault = (
-//   provider: Provider,
-//   isTesnet?: boolean
-// ) => {
+export let genL2TxFeeVault = (
+  provider: Provider,
+  isTesnet?: boolean
+) => {
 
-//   if (isTesnet) {
-//     return genContractInternal(L2TxFeeVault.abi, SCROLL_SEOLIA_TRANSACTION_FEE_VAULT, provider)
-//   }
+  if (isTesnet) {
+    return L2TxFeeVault__factory.connect(L2TxFeeVault, provider)
+  }
 
-//   return genContractInternal(L2TxFeeVault.abi, TRANSACTION_FEE_VAULT, provider)
-// }
+  return L2TxFeeVault__factory.connect(L2TxFeeVault_testnet, provider)
+}
 
-// export let genL2WETHGateway = (
-//   provider: Provider,
-//   isTesnet?: boolean
-// ) => {
+export let genL2WETHGateway = (
+  provider: Provider,
+  isTesnet?: boolean
+) => {
 
-//   if (isTesnet) {
-//     return genContractInternal(L2WETHGateway.abi, SCROLL_SEOLIA_L2_WETH_GATEWAY, provider)
-//   }
+  if (isTesnet) {
+    return L2WETHGateway__factory.connect(L2WETHGateway, provider)
+  }
 
-//   return genContractInternal(L2WETHGateway.abi, L2_WETH_GATEWAY, provider)
-// }
+  return L2WETHGateway__factory.connect(L2WETHGateway_testnet, provider)
+}
 
-// export let genScrollChain = (
-//   provider: Provider,
-//   isTesnet?: boolean
-// ) => {
+export let genScrollChain = (
+  provider: Provider,
+  isTesnet?: boolean
+) => {
 
-//   if (isTesnet) {
-//     return genContractInternal(ScrollChain.abi, SCROLL_SEOLIA_SCROLL_ROLLUP, provider)
-//   }
+  if (isTesnet) {
+    return ScrollChain__factory.connect(ScrollChain, provider)
+  }
 
-//   return genContractInternal(ScrollChain.abi, SROLL_ROLLUP, provider)
-// }
+  return ScrollChain__factory.connect(ScrollChain_testnet, provider)
+}
 
-// export let genWhitelist = (
-//   provider: Provider,
-//   isTesnet?: boolean
-// ) => {
+export let genWhitelist = (
+  provider: Provider,
+  isTesnet?: boolean
+) => {
 
-//   if (isTesnet) {
-//     return genContractInternal(Whitelist.abi, SCROLL_SEOLIA_WHITELIST, provider)
-//   }
+  if (isTesnet) {
+    return Whitelist__factory.connect(Whitelist, provider)
+  }
 
-//   return genContractInternal(Whitelist.abi, WHITELIST, provider)
-// }
+  return Whitelist__factory.connect(Whitelist_testnet, provider)
+}
 
-// export let genWrappedEther = (
-//   provider: Provider,
-//   isTesnet?: boolean
-// ) => {
+export let genWrappedEther = (
+  provider: Provider,
+  isTesnet?: boolean
+) => {
 
-//   if (isTesnet) {
-//     return genContractInternal(WrappedEther.abi, SCROLL_SEOLIA_WETH_L2, provider)
-//   }
+  if (isTesnet) {
+    return WrappedEther__factory.connect(WrappedEther, provider)
+  }
 
-//   return genContractInternal(WrappedEther.abi, WETH_L2, provider)
-// }
+  return WrappedEther__factory.connect(WrappedEther, provider)
+}

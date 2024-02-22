@@ -73,7 +73,7 @@ import {
   ScrollChain__factory,
   Whitelist__factory,
   WrappedEther__factory,
-} from '../typechain'
+} from '../scroll-contract-types'
 
 export let genContractInternal = (abi: Interface, address: string, provider: Provider) => {
   return new ethers.Contract(address, abi, provider)
@@ -133,10 +133,10 @@ export let genL1GatewayRouter = (provider: Provider, isTesnet?: boolean) => {
 
 export let genL1MessageQueueWithGasPriceOracle = (provider: Provider, isTesnet?: boolean) => {
   if (isTesnet) {
-    return L1MessageQueueWithGasPriceOracle__factory.connect(L1MessageQueueWithGasPriceOracleAddress, provider)
+    return L1MessageQueueWithGasPriceOracle__factory.connect(L1MessageQueueWithGasPriceOracle_testnet, provider)
   }
 
-  return L1MessageQueueWithGasPriceOracle__factory.connect(L1MessageQueueWithGasPriceOracle_testnet, provider)
+  return L1MessageQueueWithGasPriceOracle__factory.connect(L1MessageQueueWithGasPriceOracleAddress, provider)
 }
 
 export let genL1ScrollMessenger = (provider: Provider | Signer, isTesnet?: boolean) => {

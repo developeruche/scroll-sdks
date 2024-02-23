@@ -22,7 +22,7 @@ async function run() {
     1000000,
     wallet.address,
     {
-      value: ethers.parseEther('0.007172664601'),
+      value: fee,
     }
   )
 

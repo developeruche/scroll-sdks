@@ -4,12 +4,23 @@ export interface Message {
 
 
 /**
+ * @description this is the structure of the message proof
+ * @param {string} merkleProof - this is the merkle proof of the message been included in a batch
+ * @param {number} batchIndex - this is the index of the batch
+ */
+export interface L2MessageProof {
+    merkleProof: string,
+    batchIndex: number,
+}
+
+
+/**
  * @param {string} from - this is the address of the sender
  * @param {string} to - this is the address of the receiver
  * @param {number} value - this is the value of the message
  * @param {number} nonce - this is the nonce of the message
  * @param {string} data - this is the data of the message
- * @param {string} proof - this is the proof of the message
+ * @param {L2MessageProof} proof - this is the proof of the message
  */
 export interface relayMessageParams {
     from: string,
@@ -17,7 +28,7 @@ export interface relayMessageParams {
     value: number,
     nonce: number,
     data: string,
-    proof: string
+    proof: L2MessageProof
 }
 
 
@@ -39,7 +50,6 @@ export enum CHAIN {
  * @param CONFIRMED - the message has been confirmed
  * @param FAILED - the message failed
  */
-
 export enum MESSAGE_STATUS {
     PENDING = "PENDING",
     CONFIRMED = "CONFIRMED",

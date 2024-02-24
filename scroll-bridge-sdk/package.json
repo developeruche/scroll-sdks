@@ -63,6 +63,7 @@
   },
   "dependencies": {
     "buffer": "^6.0.3",
+    "ethers": "^6.11.1",
     "lodash": "^4.17.21"
   }
 }

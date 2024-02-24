@@ -141,10 +141,10 @@ export let genL1MessageQueueWithGasPriceOracle = (provider: Provider, isTesnet?:
 
 export let genL1ScrollMessenger = (provider: Provider | Signer, isTesnet?: boolean) => {
   if (isTesnet) {
-    return L1ScrollMessenger__factory.connect(L1ScrollMessengerAddress, provider)
+    return L1ScrollMessenger__factory.connect(L1ScrollMessenger_testnet, provider)
   }
 
-  return L1ScrollMessenger__factory.connect(L1ScrollMessenger_testnet, provider)
+  return L1ScrollMessenger__factory.connect(L1ScrollMessengerAddress, provider)
 }
 
 export let genL1StandardERC20Gateway = (provider: Provider, isTesnet?: boolean) => {
@@ -211,12 +211,14 @@ export let genL2MessageQueue = (provider: Provider, isTesnet?: boolean) => {
   return L2MessageQueue__factory.connect(L2MessageQueue_testnet, provider)
 }
 
-export let genL2ScrollMessenger = (provider: Provider, isTesnet?: boolean) => {
+export let genL2ScrollMessenger = (provider: Provider | Signer, isTesnet?: boolean) => {
   if (isTesnet) {
-    return L2ScrollMessenger__factory.connect(L2ScrollMessengerAddress, provider)
+    console.log('provider: ', provider)
+    console.log(L2ScrollMessenger_testnet)
+    return L2ScrollMessenger__factory.connect(L2ScrollMessenger_testnet, provider)
   }
 
-  return L2ScrollMessenger__factory.connect(L2ScrollMessenger_testnet, provider)
+  return L2ScrollMessenger__factory.connect(L2ScrollMessengerAddress, provider)
 }
 
 export let genL2StandardERC20Gateway = (provider: Provider, isTesnet?: boolean) => {

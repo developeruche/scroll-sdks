@@ -71,7 +71,7 @@ export async function getMessages(address: string): Promise<any> {
 
 /**
  * @description this function is used to get message proof
- * @param {string} txHash - this is the hash of the transaction
+ * @param {string} txHash - this is the hash of the transaction where the message was sent
  */
 export async function getMessageProof(txHash: string): Promise<any> {
 

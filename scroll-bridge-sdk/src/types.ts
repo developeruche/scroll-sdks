@@ -1,8 +1,3 @@
-export interface Message {
-    hello_world: () => void;
-}
-
-
 /**
  * @description this is the structure of the message proof
  * @param {string} merkleProof - this is the merkle proof of the message been included in a batch
@@ -54,4 +49,10 @@ export enum MESSAGE_STATUS {
     PENDING = "PENDING",
     CONFIRMED = "CONFIRMED",
     FAILED = "FAILED"
+}
+
+
+export interface SendMessageResponse {
+    txHash: string,
+    messageHash: string,
 }

@@ -1,5 +1,5 @@
-import { CHAIN, MESSAGE_STATUS, relayMessageParams } from "./types";
-import { ethers, Provider, Signer } from 'ethers';
+import { CHAIN, SendMessageResponse, relayMessageParams } from "./types";
+import { Signer } from 'ethers';
 
 
 
@@ -15,7 +15,7 @@ import { ethers, Provider, Signer } from 'ethers';
  * @param {string} refundAddress - this is the address the remaining gas for excecution would be sent to
  * @param {number} fee - this is the fee for sending the message
  * @param {Signer} signer - this is the signer for the transaction
- * @returns {Promise<string>} - this is the message hash
+ * @returns {Promise<SendMessageResponse>} - this is the message hash
 */
 export async function sendMessage(
     source: CHAIN,
@@ -26,55 +26,14 @@ export async function sendMessage(
     from: string, 
     fee: number,
     signer: Signer
-    ): Promise<string>
+    ): Promise<SendMessageResponse>
 {
-    return '';
-}
+    const messageResponse: SendMessageResponse = {
+        txHash: "",
+        messageHash: ""
+    };
 
-
-/**
- * 
- * @description this function would be used to estimate the fee for sending a message from 'Chain A' to 'Chain B'
- * @param {number} gasLimit - this is the gas limit for the transaction (in wei) (when excecuting the message in destination chain) (this is important when messeage route is from L1 to L2)
- * @param {Provider} provier - this is the provider for the transaction
- * @returns {number} - this is the estimated fee for sending the message
- * @notice this function is only necessary when sending a message from L1 to L2
- */
-export async function estimateCrossDomainMessageFee(gasLimit: number, provier: Provider): Promise<number> {
-    return 1;
-}
-
-
-/**
- * 
- * @description this function is used to get the message status
- * @param {string} messageHash - this is the hash of the message
- * @param {CHAIN} chain - this is the chain the message was sent from
- * @param {Provider} provider - this is the provider for the transaction
- * 
- * @returns {Promise<MESSAGE_STATUS>} - this is the status of the message
- */
-export async function getMessageStatus(soure: CHAIN, messageHash: string, provider: Provider): Promise<MESSAGE_STATUS> {
-    // NOTE: check is message has been dropped using isMessageDropped function (view function)
-    return MESSAGE_STATUS.PENDING;
-}
-
-
-/**
- * @description this function is used to get all the messsages carried out by the user and the message status
- * @param {string} address - this is the address of the user
- */
-export async function getMessages(address: string): Promise<any> {
-
-}
-
-
-/**
- * @description this function is used to get message proof
- * @param {string} txHash - this is the hash of the transaction where the message was sent
- */
-export async function getMessageProof(txHash: string): Promise<any> {
-
+    return messageResponse;
 }
 
 

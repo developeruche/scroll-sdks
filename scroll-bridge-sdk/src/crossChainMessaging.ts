@@ -1,5 +1,5 @@
-import { CHAIN, MESSAGE_STATUS, relayMessageParams } from "./types";
-import { ethers, Provider, Signer } from 'ethers';
+import { CHAIN, SendMessageResponse, relayMessageParams } from "./types";
+import { Signer } from 'ethers';
 
 
 
@@ -15,7 +15,7 @@ import { ethers, Provider, Signer } from 'ethers';
  * @param {string} refundAddress - this is the address the remaining gas for excecution would be sent to
  * @param {number} fee - this is the fee for sending the message
  * @param {Signer} signer - this is the signer for the transaction
- * @returns {Promise<string>} - this is the message hash
+ * @returns {Promise<SendMessageResponse>} - this is the message hash
 */
 export async function sendMessage(
     source: CHAIN,
@@ -26,9 +26,14 @@ export async function sendMessage(
     from: string, 
     fee: number,
     signer: Signer
-    ): Promise<string>
+    ): Promise<SendMessageResponse>
 {
-    return '';
+    const messageResponse: SendMessageResponse = {
+        txHash: "",
+        messageHash: ""
+    };
+
+    return messageResponse;
 }
 
 

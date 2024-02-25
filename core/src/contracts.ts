@@ -91,12 +91,12 @@ export let genL1CustomERC20Gateway = (provider: Provider, isTesnet?: boolean) =>
   return L1CustomERC20Gateway__factory.connect(L1CustomERC20Gateway_testnet, provider)
 }
 
-export let genL1ERC721Gateway = (provider: Provider, isTesnet?: boolean) => {
+export let genL1ERC721Gateway = (provider: Provider | Signer, isTesnet?: boolean) => {
   if (isTesnet) {
-    return L1ERC721Gateway__factory.connect(L1ERC721GatewayAddress, provider)
+    return L1ERC721Gateway__factory.connect(L1ERC721Gateway_testnet, provider)
   }
 
-  return L1ERC721Gateway__factory.connect(L1ERC721Gateway_testnet, provider)
+  return L1ERC721Gateway__factory.connect(L1ERC721GatewayAddress, provider)
 }
 
 export let genL1ERC1155Gateway = (provider: Provider, isTesnet?: boolean) => {

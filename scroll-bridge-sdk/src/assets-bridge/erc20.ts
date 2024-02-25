@@ -1,5 +1,5 @@
 import { Signer } from "ethers";
-import { SendMessageResponse } from "..";
+import { SendMessageResponse } from "../types";
 
 
 

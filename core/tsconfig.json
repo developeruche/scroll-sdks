@@ -94,5 +94,5 @@
     "skipLibCheck": true /* Skip type checking all .d.ts files. */
   },
   "exclude": ["node_modules", "dist"],
-  "include": ["src/**/*", "test/**/*", "../scroll-bridge-sdk/src/cross-chain-interaction.ts"]
+  "include": ["src/**/*", "test/**/*"]
 }

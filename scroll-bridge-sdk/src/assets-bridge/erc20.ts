@@ -17,7 +17,7 @@ import { SendMessageResponse } from "../types";
  * @param {number} gasLimit this is the gas limit to be spent on L2
  * @param {BigInt} value this is the vaule this Tx would go along with (amount + fee) [use the core moudle to estimate the fee]
  * @param {Signer} signer this the signer of the transaction
- * @returns 
+ * @returns {SendMessageResponse} {txHash: string, messageHash: string}
  */
 export async function depositERC20(
     target: string,
@@ -46,7 +46,7 @@ export async function depositERC20(
  * @param {number} gasLimit this is the gas limit to be spent on L2
  * @param {BigInt} value this is the vaule this Tx would go along with (amount + fee) [in this case fee can be 0, use the core moudle to estimate the fee]
  * @param {Signer} signer this the signer of the transaction
- * @returns 
+ * @returns {SendMessageResponse} {txHash: string, messageHash: string}
  */
 export async function withdrawERC20(
     target: string,

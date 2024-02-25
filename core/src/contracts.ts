@@ -123,12 +123,12 @@ export let genL1GasPriceOracle = (provider: Provider, isTesnet?: boolean): L1Gas
   return L1GasPriceOracle__factory.connect(L1GasPriceOracleAddress_testnet, provider)
 }
 
-export let genL1GatewayRouter = (provider: Provider, isTesnet?: boolean) => {
+export let genL1GatewayRouter = (provider: Provider | Signer, isTesnet?: boolean) => {
   if (isTesnet) {
-    return L1GatewayRouter__factory.connect(L1GatewayRouterAddress, provider)
+    return L1GatewayRouter__factory.connect(L1GatewayRouter_testnet, provider)
   }
 
-  return L1GatewayRouter__factory.connect(L1GatewayRouter_testnet, provider)
+  return L1GatewayRouter__factory.connect(L1GatewayRouterAddress, provider)
 }
 
 export let genL1MessageQueueWithGasPriceOracle = (provider: Provider, isTesnet?: boolean) => {
@@ -147,12 +147,12 @@ export let genL1ScrollMessenger = (provider: Provider | Signer, isTesnet?: boole
   return L1ScrollMessenger__factory.connect(L1ScrollMessengerAddress, provider)
 }
 
-export let genL1StandardERC20Gateway = (provider: Provider, isTesnet?: boolean) => {
+export let genL1StandardERC20Gateway = (provider: Provider | Signer, isTesnet?: boolean) => {
   if (isTesnet) {
-    return L1StandardERC20Gateway__factory.connect(L1StandardERC20GatewayAddress, provider)
+    return L1StandardERC20Gateway__factory.connect(L1StandardERC20Gateway_testnet, provider)
   }
 
-  return L1StandardERC20Gateway__factory.connect(L1StandardERC20Gateway_testnet, provider)
+  return L1StandardERC20Gateway__factory.connect(L1StandardERC20GatewayAddress, provider)
 }
 
 export let genL1WETHGateway = (provider: Provider, isTesnet?: boolean) => {
@@ -195,7 +195,7 @@ export let genL2ETHGateway = (provider: Provider, isTesnet?: boolean) => {
   return L2ETHGateway__factory.connect(L2ETHGateway_testnet, provider)
 }
 
-export let genL2GatewayRouter = (provider: Provider, isTesnet?: boolean) => {
+export let genL2GatewayRouter = (provider: Provider| Signer, isTesnet?: boolean) => {
   if (isTesnet) {
     return L2GatewayRouter__factory.connect(L2GatewayRouterAddress, provider)
   }

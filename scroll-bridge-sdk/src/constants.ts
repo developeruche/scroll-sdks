@@ -1,3 +1,3 @@
-// all constant would go into this folder 
-
-export const API_URL = 'https://demo.com';
+export const DEFUALT_GAS_LIMIT_DEPOSIT_ETH = 170_000;
+export const DEFUALT_GAS_LIMIT_DEPOSIT_ERC20_ON_FIRST_DEPLOYMENT = 400_000;
+export const DEFUALT_GAS_LIMIT_DEPOSIT_ERC20 = 150_000;

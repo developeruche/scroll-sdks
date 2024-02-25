@@ -55,3 +55,9 @@ export enum MESSAGE_STATUS {
     CONFIRMED = "CONFIRMED",
     FAILED = "FAILED"
 }
+
+
+export interface SendMessageResponse {
+    txHash: string,
+    messageHash: string,
+}

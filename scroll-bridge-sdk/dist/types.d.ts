@@ -1,5 +1,6 @@
-export interface Message {
-    hello_world: () => void;
+export interface L2MessageProof {
+    merkleProof: string;
+    batchIndex: number;
 }
 export interface relayMessageParams {
     from: string;
@@ -7,7 +8,7 @@ export interface relayMessageParams {
     value: number;
     nonce: number;
     data: string;
-    proof: string;
+    proof: L2MessageProof;
 }
 export declare enum CHAIN {
     L1 = "L1",
@@ -17,4 +18,8 @@ export declare enum MESSAGE_STATUS {
     PENDING = "PENDING",
     CONFIRMED = "CONFIRMED",
     FAILED = "FAILED"
+}
+export interface SendMessageResponse {
+    txHash: string;
+    messageHash: string;
 }

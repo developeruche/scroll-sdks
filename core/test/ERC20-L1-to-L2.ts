@@ -37,6 +37,12 @@ async function main() {
             value: ethers.parseEther("0.50001"),
           }
     )
+
+    await depositEther.wait();
+
+    let hash = depositEther.hash;
+
+    {}
         console.log("deposit ::     ",depositEther)
 
 

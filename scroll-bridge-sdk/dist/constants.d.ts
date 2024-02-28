@@ -1,1 +1,5 @@
-export declare const API_URL = "https://demo.com";
+export declare const DEFUALT_GAS_LIMIT_DEPOSIT_ETH = 170000;
+export declare const DEFUALT_GAS_LIMIT_DEPOSIT_ERC20_ON_FIRST_DEPLOYMENT = 400000;
+export declare const DEFUALT_GAS_LIMIT_DEPOSIT_ERC20 = 150000;
+export declare const DEFUALT_ERC721_DEPOSIT_FEE = 0;
+export declare const DEFUALT_ERC721_WITHDRAW_FEE = 0;

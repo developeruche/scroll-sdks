@@ -13,7 +13,8 @@ import { SendMessageResponse } from "../types";
  * @param {BigInt} amount this is amount of ETH to be deposited to the recipent
  * @param {number} gasLimit this is the gas limit to be spent on L2
  * @param {BigInt} value this is the vaule this Tx would go along with (amount + fee) 
- * @param {Signer} signer 
+ * @param {Signer} signer this the signer of the transaction
+ * @param {boolean} isTestnet this is a flag to indicate if the network is a testnet or not
  * @see GasModule in the core to sdk
  * @returns {SendMessageResponse} this is the response of the message
  */
@@ -22,7 +23,8 @@ export async function depositETH(
     amount: BigInt,
     gasLimit: number,
     value: BigInt,
-    signer: Signer
+    signer: Signer,
+    isTestnet: boolean
 ): Promise<SendMessageResponse> {
 
 
@@ -45,7 +47,8 @@ export async function depositETH(
  * @param {BigInt} amount this is amount of ETH to be withdrawn to the recipent
  * @param {number} gasLimit this is the gas limit to be spent on L2
  * @param {BigInt} value this is the vaule this Tx would go along with (amount + fee) 
- * @param {Signer} signer 
+ * @param {Signer} signer this the signer of the transaction
+ * @param {boolean} isTestnet this is a flag to indicate if the network is a testnet or not
  * @see GasModule in the core to sdk, fee in this case can be 0
  * @returns {SendMessageResponse} this is the response of the message
  */
@@ -54,7 +57,8 @@ export async function withdrawETH(
     amount: BigInt,
     gasLimit: number,
     value: BigInt,
-    signer: Signer
+    signer: Signer,
+    isTestnet: boolean
 ): Promise<SendMessageResponse> {
     
     

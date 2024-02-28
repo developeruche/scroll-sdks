@@ -1,5 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.API_URL = void 0;
-exports.API_URL = 'https://demo.com';
+exports.DEFUALT_ERC721_WITHDRAW_FEE = exports.DEFUALT_ERC721_DEPOSIT_FEE = exports.DEFUALT_GAS_LIMIT_DEPOSIT_ERC20 = exports.DEFUALT_GAS_LIMIT_DEPOSIT_ERC20_ON_FIRST_DEPLOYMENT = exports.DEFUALT_GAS_LIMIT_DEPOSIT_ETH = void 0;
+exports.DEFUALT_GAS_LIMIT_DEPOSIT_ETH = 170000;
+exports.DEFUALT_GAS_LIMIT_DEPOSIT_ERC20_ON_FIRST_DEPLOYMENT = 400000;
+exports.DEFUALT_GAS_LIMIT_DEPOSIT_ERC20 = 150000;
+exports.DEFUALT_ERC721_DEPOSIT_FEE = 0;
+exports.DEFUALT_ERC721_WITHDRAW_FEE = 0;
 //# sourceMappingURL=constants.js.map

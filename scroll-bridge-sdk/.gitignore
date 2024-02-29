@@ -1,1 +1,21 @@
-/node_modules
+.DS_Store
+
+# IntelliJ IDEs
+.idea/
+
+# Visual studio code
+.vscode/
+
+# Locally downloaded dependencies
+node_modules/
+
+# Output dir
+dist/
+
+/typechain
+//
+
+/scroll-contract-types
+
+/dist
+

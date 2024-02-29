@@ -2,6 +2,10 @@ export interface L2MessageProof {
     merkleProof: string;
     batchIndex: number;
 }
+export interface L2MessageProof {
+    merkleProof: string;
+    batchIndex: number;
+}
 export interface relayMessageParams {
     from: string;
     to: string;

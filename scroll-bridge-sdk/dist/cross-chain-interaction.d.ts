@@ -1,7 +1,10 @@
 import { CHAIN, MESSAGE_STATUS, relayMessageParams } from "./types";
-export declare function sendMessage(source: CHAIN, target: string, value: number, data: string, gasLimit: number, from: string, fee: number): Promise<string>;
-export declare function estimateCrossDomainMessageFee(gasLimit: number): Promise<number>;
-export declare function getMessageStatus(soure: CHAIN, messageHash: string): Promise<MESSAGE_STATUS>;
+import { Provider, Signer } from 'ethers';
+export declare function sendMessage(source: CHAIN, target: string, value: number, data: string, gasLimit: number, from: string, fee: number, signer: Signer): Promise<string>;
+export declare function estimateCrossDomainMessageFee(gasLimit: number, provier: Provider): Promise<number>;
+export declare function getMessageStatus(soure: CHAIN, messageHash: string, provider: Provider): Promise<MESSAGE_STATUS>;
 export declare function getMessages(address: string): Promise<any>;
 export declare function getMessageProof(txHash: string): Promise<any>;
-export declare function relayMessage(params: relayMessageParams): Promise<any>;
+export declare function relayMessageWithProof(params: relayMessageParams, signer: Signer): Promise<any>;
+export declare function replayMessage(from: string, to: string, value: number, messageNonce: number, data: string, gasLimit: number, refundAddress: string, signer: Signer): Promise<any>;
+export declare function dropMessage(from: string, to: string, value: number, messageNonce: number, data: string): Promise<any>;

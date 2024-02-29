@@ -1,5 +1,6 @@
-import { Signer } from "ethers";
+import { BigNumberish, Signer } from "ethers";
 import { SendMessageResponse } from "../types";
+import {genL1GatewayRouter} from "@scroll-tech/core"
 
 
 
@@ -23,14 +24,26 @@ import { SendMessageResponse } from "../types";
 export async function depositERC20(
     target: string,
     recipient: string,
-    amount: BigInt,
+    amount: BigNumberish,
     gasLimit: number,
-    value: BigInt,
+    value: BigNumberish,
     signer: Signer,
     isTestnet: boolean
 ): Promise<SendMessageResponse> {
+    let l1GatewayRouter = genL1GatewayRouter(signer, isTestnet);
+    let depositERC20 = await l1GatewayRouter["depositERC20(address,address,uint256,uint256)"](
+        target,
+        recipient,
+        amount,
+        gasLimit, 
+        {
+            value
+        }
+    );
+    await depositERC20.wait();
+    
     const messageResponse: SendMessageResponse = {
-        txHash: "",
+        txHash: depositERC20.hash,
         messageHash: ""
     };
 
@@ -60,6 +73,10 @@ export async function withdrawERC20(
     signer: Signer,
     isTestnet: boolean
 ): Promise<SendMessageResponse> {
+    
+    
+    
+    
     const messageResponse: SendMessageResponse = {
         txHash: "",
         messageHash: ""

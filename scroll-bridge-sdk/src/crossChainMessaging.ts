@@ -45,7 +45,9 @@ export async function sendMessage(
  * @param {Signer} signer - this is the signer for the transaction
  * @param {boolean} isTestnet this is a flag to indicate if the network is a testnet or not
  */
-export async function relayMessageWithProof(params: relayMessageParams, signer: Signer, isTestnet: boolean): Promise<any> {
+export async function relayMessageWithProof(params: relayMessageParams, signer: Signer, isTestnet: boolean)
+    : Promise<any> 
+{
 
 }
 
@@ -72,9 +74,10 @@ export async function replayMessage(
     refundAddress: string,
     signer: Signer,
     isTestnet: boolean
-    ): Promise<any> {
+    ): Promise<any> 
+{
 
-    }
+}
 
 
 /**
@@ -93,6 +96,7 @@ export async function dropMessage(
     messageNonce: number, 
     data: string,
     isTestnet: boolean
-    ): Promise<any> {
+    ): Promise<any> 
+{
 
 }

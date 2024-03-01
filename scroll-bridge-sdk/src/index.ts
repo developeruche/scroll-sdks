@@ -5,6 +5,6 @@
 export * from './constants';
 export * from './types';
 export * from './crossChainMessaging';
-export * from './secretory';
+export * from './secretary';
 export * from './assets-bridge';
 

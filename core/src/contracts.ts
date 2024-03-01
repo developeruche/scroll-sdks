@@ -217,8 +217,6 @@ export let genL2MessageQueue = (provider: Provider, isTesnet?: boolean) => {
 
 export let genL2ScrollMessenger = (provider: Provider | Signer, isTesnet?: boolean) => {
   if (isTesnet) {
-    console.log('provider: ', provider)
-    console.log(L2ScrollMessenger_testnet)
     return L2ScrollMessenger__factory.connect(L2ScrollMessenger_testnet, provider)
   }
 

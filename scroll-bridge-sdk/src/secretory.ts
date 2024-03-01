@@ -1,5 +1,6 @@
 import { Provider } from "ethers";
 import { CHAIN, MESSAGE_STATUS } from "./types";
+import { genL1ScrollMessenger, genL2ScrollMessenger } from "@scroll-tech/core";
 
 /**
  * 
@@ -11,10 +12,43 @@ import { CHAIN, MESSAGE_STATUS } from "./types";
  * 
  * @returns {Promise<MESSAGE_STATUS>} - this is the status of the message
  */
-export async function getMessageStatus(soure: CHAIN, messageHash: string, provider: Provider, isTestnet: boolean): Promise<MESSAGE_STATUS> {
-    // NOTE: check is message has been dropped using isMessageDropped function (view function)
+export async function getMessageStatus(source: CHAIN, messageHash: string, provider: Provider, isTestnet: boolean): Promise<MESSAGE_STATUS> {
+    let messagerL1 = await genL1ScrollMessenger(provider, isTestnet);
+    let messagerL2 = await genL2ScrollMessenger(provider, isTestnet);
     
-    return MESSAGE_STATUS.PENDING;
+    
+    switch (source) {
+        case CHAIN.L1:
+            let isDropped = await messagerL1.isL1MessageDropped(messageHash);
+            let isConfirmed = await messagerL2.isL1MessageExecuted(messageHash);
+
+
+            if (isConfirmed) {
+                return MESSAGE_STATUS.CONFIRMED;
+            }
+
+            if (isDropped) {
+                return MESSAGE_STATUS.DROPPED;
+            }
+
+            let latestRetryCount = await messagerL1.prevReplayIndex(messageHash);
+
+            if (latestRetryCount > 3) {
+                return MESSAGE_STATUS.FAILED;
+            }
+
+            return MESSAGE_STATUS.PENDING;
+        case CHAIN.L2:
+            let isConfirmedL2 = await messagerL1.isL2MessageExecuted(messageHash);
+
+            if (isConfirmedL2) {
+                return MESSAGE_STATUS.CONFIRMED;
+            }
+
+            return MESSAGE_STATUS.PENDING;
+        default:
+            throw new Error("Invalid source chain");
+    }
 }
 
 
@@ -24,7 +58,7 @@ export async function getMessageStatus(soure: CHAIN, messageHash: string, provid
  * @param {boolean} isTestnet this is a flag to indicate if the network is a testnet or not
  */
 export async function getMessages(address: string, isTestnet: boolean): Promise<any> {
-
+    
 }
 
 

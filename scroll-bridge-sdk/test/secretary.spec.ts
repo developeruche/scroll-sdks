@@ -1,4 +1,4 @@
-import { getMessageProof, getMessageStatus, getMessages } from '@src/secretory';
+import { getMessageProof, getMessageStatus, getMessages } from '@src/secretary';
 import { expect } from './setup';
 import { CHAIN, MESSAGE_STATUS } from '@src/types';
 import { ethers } from 'ethers';

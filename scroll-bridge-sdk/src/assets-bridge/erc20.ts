@@ -1,6 +1,6 @@
 import { BigNumberish, Signer } from "ethers";
 import { SendMessageResponse } from "../types";
-import {genL1GatewayRouter} from "@scroll-tech/core"
+import {genL1GatewayRouter} from "@scroll-tech/core";
 
 
 

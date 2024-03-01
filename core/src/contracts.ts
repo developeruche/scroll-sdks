@@ -73,7 +73,7 @@ import {
   ScrollChain__factory,
   Whitelist__factory,
   WrappedEther__factory,
-} from '../scroll-contract-types';
+} from './scroll-contract-types';
 
 
 

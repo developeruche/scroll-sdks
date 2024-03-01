@@ -1,5 +1,5 @@
 {
-  "name": "@scroll-tech/core",
+  "name": "@developeruche/dev-scroll-core",
   "version": "0.0.1",
   "description": "This SDK holds addresses, contract instances, gas estimation function and other utils",
   "main": "dist/index",

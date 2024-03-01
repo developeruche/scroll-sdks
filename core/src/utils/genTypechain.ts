@@ -14,7 +14,7 @@ async function main() {
     cwd,
     filesToProcess: allFiles,
     allFiles,
-    outDir: './scroll-contract-types',
+    outDir: './src/scroll-contract-types',
     target: 'ethers-v6',
   })
 

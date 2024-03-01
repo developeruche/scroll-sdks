@@ -15,6 +15,6 @@ dist/
 /typechain
 //
 
-/scroll-contract-types
+/src/scroll-contract-types
 
 /dist

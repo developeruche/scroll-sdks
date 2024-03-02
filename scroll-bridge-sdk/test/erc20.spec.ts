@@ -19,6 +19,8 @@ const ERC20_TOKEN_ON_L1 = '0x14C010B30fDEbF9C56629C70D45A7b94c1Dc8d1d' // this t
 const ERC20_TOKEN_ON_L2 = '0x0efDfBA6Cec9642DC5665f4611ce1D5b3955CD51' // this token is deployed on L2
 
 const L1ERC20TOKEN = scrollContracts.ERC20__factory.connect(ERC20_TOKEN_ON_L1, walletL1)
+const L2ERC20TOKEN = scrollContracts.ERC20__factory.connect(ERC20_TOKEN_ON_L2, walletL2)
+
 const isTestnet = true
 
 let l1GatewayRouter = genL1GatewayRouter(walletL1, isTestnet)
@@ -49,13 +51,23 @@ describe('ERC20 Bridging Module', async () => {
   })
 
   describe('withdrawERC20', async () => {
-    // it('should should get messages and address has sent (MAINNET)', async () => {
-    //   let messages = await getMessages('0x453aF7A5D1CAA3e911Da2493edCde02f91C400BD', false)
-    //   console.log(messages.data.data)
-    // })
-    // it('should should get messages and address has sent (TESTNNET)', async () => {
-    //   let messages = await getMessages('0x5c919BCddA25447C168C87252326A43C709ECdBD', true)
-    //   console.log(messages.data.data)
-    // })
+    it('should withdraw ERC20 token from L2 to L1', async () => {
+      const approveTx = await L2ERC20TOKEN.approve(l2GatewayRouter.target, ethers.parseEther('100'))
+      let approveReceipt = await approveTx.wait()
+
+      console.log('approve transaction hash ::   ', approveReceipt?.hash)
+
+      const withdrawTx = await withdrawERC20(
+        ERC20_TOKEN_ON_L2,
+        '0x5c919BCddA25447C168C87252326A43C709ECdBD',
+        ethers.parseEther('100'),
+        60000, // gas limit [this have to be estimated by the user (1172793 for first time and 20000 for other times)]
+        0,
+        walletL2,
+        isTestnet
+      )
+
+      console.log('withdrawal transaction ::   ', withdrawTx)
+    })
   })
 })

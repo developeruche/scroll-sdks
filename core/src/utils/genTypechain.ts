@@ -8,8 +8,6 @@ async function main() {
     `./artifacts/!(build-info)/**/+([a-zA-Z0-9_]).json`,
   ])
 
-  console.log(allFiles)
-
   const result = await runTypeChain({
     cwd,
     filesToProcess: allFiles,
@@ -19,6 +17,7 @@ async function main() {
   })
 
   console.log(result)
+  console.log('DONE!')
 }
 
 main().catch(console.error)

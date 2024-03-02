@@ -8,7 +8,7 @@
 
 # Locally downloaded dependencies
 node_modules/
-
+yarn-error.log
 # Output dir
 dist/
 

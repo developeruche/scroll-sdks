@@ -93,7 +93,3 @@ describe('Secretory Module', async () => {
     })
   })
 })
-
-function done() {
-  throw new Error('Function not implemented.')
-}

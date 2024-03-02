@@ -1,16 +1,9 @@
-import { BigNumberish, Signer } from "ethers";
-import { SendMessageResponse } from "../types";
-import {genL1GatewayRouter} from "@scroll-tech/core";
-
-
-
-
-
-
-
+import { BigNumberish, Signer } from 'ethers'
+import { SendMessageResponse } from '../types'
+import { genL1GatewayRouter } from '@scroll-tech/core'
 
 /**
- * 
+ *
  * @description this function is used to deposit ERC20 from L1 to L2
  * @param {string} target this is the address of the ERC20 token
  * @param {string} recipient this is the address of the recipient on L2
@@ -22,38 +15,36 @@ import {genL1GatewayRouter} from "@scroll-tech/core";
  * @returns {SendMessageResponse} {txHash: string, messageHash: string}
  */
 export async function depositERC20(
-    target: string,
-    recipient: string,
-    amount: BigNumberish,
-    gasLimit: number,
-    value: BigNumberish,
-    signer: Signer,
-    isTestnet: boolean
+  target: string,
+  recipient: string,
+  amount: BigNumberish,
+  gasLimit: number,
+  value: BigNumberish,
+  signer: Signer,
+  isTestnet: boolean
 ): Promise<SendMessageResponse> {
-    let l1GatewayRouter = genL1GatewayRouter(signer, isTestnet);
-    let depositERC20 = await l1GatewayRouter["depositERC20(address,address,uint256,uint256)"](
-        target,
-        recipient,
-        amount,
-        gasLimit, 
-        {
-            value
-        }
-    );
-    await depositERC20.wait();
-    
-    const messageResponse: SendMessageResponse = {
-        txHash: depositERC20.hash,
-        messageHash: ""
-    };
+  let l1GatewayRouter = genL1GatewayRouter(signer, isTestnet)
+  let depositERC20 = await l1GatewayRouter['depositERC20(address,address,uint256,uint256)'](
+    target,
+    recipient,
+    amount,
+    gasLimit,
+    {
+      value,
+    }
+  )
+  await depositERC20.wait()
 
-    return messageResponse;
+  const messageResponse: SendMessageResponse = {
+    txHash: depositERC20.hash,
+    messageHash: '',
+  }
+
+  return messageResponse
 }
 
-
-
 /**
- * 
+ *
  * @description this function is used to withdraw ERC20 from L2 to L1
  * @param {string} target this is the address of the ERC20 token
  * @param {string} recipient this is the address of the recipient on L1
@@ -65,22 +56,18 @@ export async function depositERC20(
  * @returns {SendMessageResponse} {txHash: string, messageHash: string}
  */
 export async function withdrawERC20(
-    target: string,
-    recipient: string,
-    amount: BigInt,
-    gasLimit: number,
-    value: BigInt,
-    signer: Signer,
-    isTestnet: boolean
+  target: string,
+  recipient: string,
+  amount: BigInt,
+  gasLimit: number,
+  value: BigInt,
+  signer: Signer,
+  isTestnet: boolean
 ): Promise<SendMessageResponse> {
-    
-    
-    
-    
-    const messageResponse: SendMessageResponse = {
-        txHash: "",
-        messageHash: ""
-    };
+  const messageResponse: SendMessageResponse = {
+    txHash: '',
+    messageHash: '',
+  }
 
-    return messageResponse;
+  return messageResponse
 }

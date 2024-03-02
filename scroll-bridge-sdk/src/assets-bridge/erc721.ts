@@ -1,6 +1,6 @@
 import { BigNumberish, Signer } from "ethers";
 import { SendMessageResponse } from "../types";
-import { genL1ERC721Gateway } from "@scroll-tech/core";
+import { genL1ERC721Gateway, genL2ERC721Gateway } from "@scroll-tech/core";
 
 
 
@@ -66,7 +66,7 @@ export async function depositERC721(
  * @param recipent this is the address that would be recieving the NFT on L1 
  * @param tokenId this is the token ID of the NFT to be withdrawn 
  * @param gasLimit this is the gas limit for the transaction 
- * @param vaule the vaule this Tx would go along with (amount + fee) [in this case fee can be 0, use the core moudle to estimate the fee] 
+ * @param value the vaule this Tx would go along with (amount + fee) [in this case fee can be 0, use the core moudle to estimate the fee] 
  * @param signer this the signer of the transaction
  * @param {boolean} isTestnet this is a flag to indicate if the network is a testnet or not 
  * @returns {SendMessageResponse} {txHash: string, messageHash: string}   
@@ -76,12 +76,32 @@ export async function withdrawERC721(
     recipent: string, 
     tokenId: BigNumberish,   
     gasLimit: number,   
-    vaule: BigNumberish,   
+    value: BigNumberish,   
     signer: Signer,   
     isTestnet: boolean   
 ): Promise<SendMessageResponse> {
+
+    
+    let l2ERC721gateway = genL2ERC721Gateway(signer, isTestnet);
+
+
+    let withdrawERC721 = await l2ERC721gateway["withdrawERC721(address,address,uint256,uint256)"](
+        target,
+        recipent,
+        tokenId,
+        gasLimit, // gas limit
+        {
+            value,
+        }
+    )
+
+    await  withdrawERC721.wait()
+
+
+
+
     const messageResponse: SendMessageResponse = {
-        txHash: "",
+        txHash: withdrawERC721.hash,
         messageHash: ""
     };
 

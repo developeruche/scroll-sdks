@@ -48,7 +48,8 @@ export enum CHAIN {
 export enum MESSAGE_STATUS {
     PENDING = "PENDING",
     CONFIRMED = "CONFIRMED",
-    FAILED = "FAILED"
+    FAILED = "FAILED",
+    DROPPED = "DROPPED"
 }
 
 

@@ -13,7 +13,7 @@
     "pretest": "npm run build",
     "prepublish": "tsc -p ./tsconfig.build.json",
     "build": "tsc -p ./tsconfig.build.json",
-    "test": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register -r tsconfig-paths/register 'test/**/*.ts'",
+    "test": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha --timeout 10000 -r ts-node/register -r tsconfig-paths/register 'test/**/*.ts'",
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix",
     "check-formatting": "prettier --write --list-different '{src,test}/**/*.{js,jsx,html,md,mdx,yaml,json,css,scss,less}'",
@@ -38,6 +38,7 @@
   },
   "homepage": "https://github.com/developeruche/ts-sdk#readme",
   "devDependencies": {
+    "@scroll-tech/core": "../core",
     "@types/chai": "^4.3.0",
     "@types/chai-as-promised": "^7.1.5",
     "@types/mocha": "^9.1.0",
@@ -46,6 +47,7 @@
     "@typescript-eslint/parser": "^5.18.0",
     "chai": "^4.3.6",
     "chai-as-promised": "^7.1.1",
+    "dotenv": "^16.4.5",
     "eslint": "^8.13.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-import": "^2.26.0",
@@ -59,10 +61,10 @@
     "sinon": "^13.0.1",
     "sinon-chai": "^3.7.0",
     "ts-node": "^10.7.0",
-    "typescript": "^4.6.3",
-    "@scroll-tech/core": "../core"
+    "typescript": "^4.6.3"
   },
   "dependencies": {
+    "axios": "^1.6.7",
     "buffer": "^6.0.3",
     "ethers": "^6.11.1",
     "lodash": "^4.17.21"

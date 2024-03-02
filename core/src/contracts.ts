@@ -175,7 +175,7 @@ export let genL2CustomERC20Gateway = (provider: Provider, isTesnet?: boolean) =>
   return L2CustomERC20Gateway__factory.connect(L2CustomERC20GatewayAddress, provider)
 }
 
-export let genL2ERC721Gateway = (provider: Provider, isTesnet?: boolean) => {
+export let genL2ERC721Gateway = (provider: Provider | Signer, isTesnet?: boolean) => {
   if (isTesnet) {
     return L2ERC721Gateway__factory.connect(L2ERC721Gateway_testnet, provider)
   }

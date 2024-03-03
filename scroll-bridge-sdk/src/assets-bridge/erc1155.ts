@@ -1,14 +1,9 @@
-import { Signer } from "ethers";
-import { SendMessageResponse } from "../types";
-
-
-
-
-
-
+import { AddressLike, BigNumberish, Signer } from 'ethers'
+import { SendMessageResponse } from '../types'
+import { genL1ERC1155Gateway, genL2ERC1155Gateway } from '@scroll-tech/core'
 
 /**
- * 
+ *
  * @param {string} target this is the address of the ERC1155 token on L1
  * @param {string} recipent this is the address of the recipient on L2
  * @param {BigInt} tokenId this is the token ID of the NFT to be deposited
@@ -20,30 +15,39 @@ import { SendMessageResponse } from "../types";
  * @returns {SendMessageResponse} {txHash: string, messageHash: string}
  */
 export async function depositERC1155(
-    target: string,
-    recipent: string,
-    tokenId: BigInt,
-    amount: BigInt,
-    gasLimit: number,
-    vaule: BigInt,
-    signer: Signer,
-    isTestnet: boolean
+  target: AddressLike,
+  recipent: AddressLike,
+  tokenId: BigNumberish,
+  amount: BigNumberish,
+  gasLimit: number,
+  value: BigNumberish,
+  signer: Signer,
+  isTestnet: boolean
 ): Promise<SendMessageResponse> {
-    
-    
-    
-    const messageResponse: SendMessageResponse = {
-        txHash: "",
-        messageHash: ""
-    };
+  let l1ERC1155Gateway = genL1ERC1155Gateway(signer, isTestnet)
 
-    return messageResponse;
+  let depositERC1155 = await l1ERC1155Gateway['depositERC1155(address,address,uint256,uint256,uint256)'](
+    target,
+    recipent,
+    tokenId,
+    amount,
+    gasLimit,
+    {
+      value,
+    }
+  )
+  await depositERC1155.wait()
+
+  const messageResponse: SendMessageResponse = {
+    txHash: depositERC1155.hash,
+    messageHash: '',
+  }
+
+  return messageResponse
 }
 
-
-
 /**
- * 
+ *
  * @param {string} target The address of ERC1155 token contract on L2.
  * @param {string} recipent this is the address that would be recieving the NFT on L1
  * @param {BigInt} tokenId this is the token ID of the NFT to be withdrawn
@@ -55,21 +59,34 @@ export async function depositERC1155(
  * @returns {SendMessageResponse} {txHash: string, messageHash: string}
  */
 export async function withdrawERC1155(
-    target: string,
-    recipent: string,
-    tokenId: BigInt,
-    amount: BigInt,
-    gasLimit: number,
-    vaule: BigInt,
-    signer: Signer,
-    isTestnet: boolean
+  target: AddressLike,
+  recipent: AddressLike,
+  tokenId: BigNumberish,
+  amount: BigNumberish,
+  gasLimit: number,
+  value: BigNumberish,
+  signer: Signer,
+  isTestnet: boolean
 ): Promise<SendMessageResponse> {
+  let l2ERC1155Gateway = genL2ERC1155Gateway(signer, isTestnet)
 
-    
-    const messageResponse: SendMessageResponse = {
-        txHash: "",
-        messageHash: ""
-    };
+  let withdrawERC1155 = await l2ERC1155Gateway['withdrawERC1155(address,address,uint256,uint256,uint256)'](
+    target,
+    recipent,
+    tokenId,
+    amount,
+    gasLimit,
+    {
+      value,
+    }
+  )
 
-    return messageResponse;
+  await withdrawERC1155.wait()
+
+  const messageResponse: SendMessageResponse = {
+    txHash: withdrawERC1155.hash,
+    messageHash: '',
+  }
+
+  return messageResponse
 }

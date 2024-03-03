@@ -73,11 +73,7 @@ import {
   ScrollChain__factory,
   Whitelist__factory,
   WrappedEther__factory,
-} from './scroll-contract-types';
-
-
-
-
+} from './scroll-contract-types'
 
 export let genContractInternal = (abi: Interface, address: string, provider: Provider) => {
   return new ethers.Contract(address, abi, provider)
@@ -103,7 +99,7 @@ export let genL1ERC721Gateway = (provider: Provider | Signer, isTesnet?: boolean
   return L1ERC721Gateway__factory.connect(L1ERC721GatewayAddress, provider)
 }
 
-export let genL1ERC1155Gateway = (provider: Provider, isTesnet?: boolean) => {
+export let genL1ERC1155Gateway = (provider: Provider | Signer, isTesnet?: boolean) => {
   if (isTesnet) {
     return L1ERC1155Gateway__factory.connect(L1ERC1155Gateway_testnet, provider)
   }
@@ -183,7 +179,7 @@ export let genL2ERC721Gateway = (provider: Provider | Signer, isTesnet?: boolean
   return L2ERC721Gateway__factory.connect(L2ERC721GatewayAddress, provider)
 }
 
-export let genL2ERC1155Gateway = (provider: Provider, isTesnet?: boolean) => {
+export let genL2ERC1155Gateway = (provider: Provider | Signer, isTesnet?: boolean) => {
   if (isTesnet) {
     return L2ERC1155Gateway__factory.connect(L2ERC1155Gateway_testnet, provider)
   }
@@ -199,7 +195,7 @@ export let genL2ETHGateway = (provider: Provider, isTesnet?: boolean) => {
   return L2ETHGateway__factory.connect(L2ETHGatewayAddress, provider)
 }
 
-export let genL2GatewayRouter = (provider: Provider| Signer, isTesnet?: boolean) => {
+export let genL2GatewayRouter = (provider: Provider | Signer, isTesnet?: boolean) => {
   if (isTesnet) {
     return L2GatewayRouter__factory.connect(L2GatewayRouter_testnet, provider)
   }

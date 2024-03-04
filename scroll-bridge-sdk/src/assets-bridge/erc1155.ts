@@ -4,14 +4,14 @@ import { genL1ERC1155Gateway, genL2ERC1155Gateway } from '@scroll-tech/core'
 
 /**
  *
- * @param {string} target this is the address of the ERC1155 token on L1
- * @param {string} recipent this is the address of the recipient on L2
- * @param {BigInt} tokenId this is the token ID of the NFT to be deposited
- * @param {string} amount this is the amount of ERC1155 to be deposited to the recipent
- * @param {number} gasLimit this is the GasLimit for the transaction
- * @param {BigInt} vaule this vaule this Tx would go along with (amount + fee) [use the core moudle to estimate the fee]
- * @param {Signer} signer this the signer of the transaction
- * @param {boolean} isTestnet this is a flag to indicate if the network is a testnet or not
+ * @param {AddressLike} target This is the address of the ERC1155 token on L1.
+ * @param {AddressLike} recipent This is the address of the recipient on L2.
+ * @param {BigNumberish} tokenId This is the token ID of the NFT to be deposited.
+ * @param {BigNumberish} amount This is the amount of ERC1155 to be deposited to the recipent.
+ * @param {number} gasLimit This is the GasLimit for the transaction.
+ * @param {BigNumberish} vaule This vaule this Tx would go along with (amount + fee) [use the core moudle to estimate the fee].
+ * @param {Signer} signer This the signer of the transaction.
+ * @param {boolean} isTestnet This is a flag to indicate if the network is a testnet or not.
  * @returns {SendMessageResponse} {txHash: string, messageHash: string}
  */
 export async function depositERC1155(
@@ -48,14 +48,14 @@ export async function depositERC1155(
 
 /**
  *
- * @param {string} target The address of ERC1155 token contract on L2.
- * @param {string} recipent this is the address that would be recieving the NFT on L1
- * @param {BigInt} tokenId this is the token ID of the NFT to be withdrawn
- * @param {string} amount this is the amount of ERC1155 to be withdrawn to the recipent
- * @param {number} gasLimit this is the gas limit to be spent on L2
- * @param {BigInt} vaule value to be sent along with the transaction
- * @param {Signer} signer signer of the transaction
- * @param {boolean} isTestnet this is a flag to indicate if the network is a testnet or not
+ * @param {AddressLike} target The address of ERC1155 token contract on L2.
+ * @param {AddressLike} recipent This is the address that would be recieving the NFT on L1.
+ * @param {BigNumberish} tokenId This is the token ID of the NFT to be withdrawn.
+ * @param {BigNumberish} amount This is the amount of ERC1155 to be withdrawn to the recipent.
+ * @param {number} gasLimit This is the gas limit to be spent on L2.
+ * @param {BigNumberish} vaule Value to be sent along with the transaction.
+ * @param {Signer} signer Signer of the transaction.
+ * @param {boolean} isTestnet This is a flag to indicate if the network is a testnet or not.
  * @returns {SendMessageResponse} {txHash: string, messageHash: string}
  */
 export async function withdrawERC1155(
@@ -85,6 +85,34 @@ export async function withdrawERC1155(
 
   const messageResponse: SendMessageResponse = {
     txHash: withdrawERC1155.hash,
+    messageHash: '',
+  }
+
+  return messageResponse
+}
+
+/**
+ *
+ * @param {AddressLike} _l1Token The address of the ERC1155 token in L1.
+ * @param {AddressLike} _l2Token The address of corresponding ERC1155 token in L2.
+ * @param {Signer} _signer Signer of the transaction.
+ * @param {boolean} _isTestnet This is a flag to indicate if the network is a testnet or not.
+ * @returns {SendMessageResponse} {txHash: string, messageHash: string}
+ */
+export async function updateTokenMapping(
+  _l1Token: AddressLike,
+  _l2Token: AddressLike,
+  _signer: Signer,
+  _isTestnet: boolean
+): Promise<SendMessageResponse> {
+  let l1ERC1155Gateway = genL1ERC1155Gateway(_signer, _isTestnet)
+
+  let updateTokenMapping = await l1ERC1155Gateway['updateTokenMapping(address,address)'](_l1Token, _l2Token)
+
+  await updateTokenMapping.wait()
+
+  const messageResponse: SendMessageResponse = {
+    txHash: updateTokenMapping.hash,
     messageHash: '',
   }
 

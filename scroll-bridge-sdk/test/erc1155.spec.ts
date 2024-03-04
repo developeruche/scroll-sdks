@@ -3,8 +3,8 @@ import { scrollContracts, genL1GatewayRouter, genL2GatewayRouter } from '@scroll
 import { ethers } from 'ethers'
 import { config } from 'dotenv'
 
-describe('ERC1155', function () {
-  describe('depositERC1155', function () {})
-  describe('withdrawERC1155', function () {})
-  describe('updateTokenMapping', function () {})
-})
+// describe('ERC1155', function () {
+//   describe('depositERC1155', function () {})
+//   describe('withdrawERC1155', function () {})
+//   describe('updateTokenMapping', function () {})
+// })

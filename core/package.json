@@ -12,7 +12,7 @@
   "scripts": {
     "pretest": "npm run build",
     "generatetypes": "ts-node src/utils/genTypechain.ts",
-    "prepublish": "tsc -p ./tsconfig.build.json",
+    "prepublish": "tsc -p ./tsconfig.build.json && npm run generatetypes",
     "build": "tsc -p ./tsconfig.build.json",
     "test": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register -r tsconfig-paths/register 'test/**/*.ts'",
     "lint": "eslint . --ext .ts",

@@ -2,7 +2,7 @@
 
 import { genL1GatewayRouter, genL2GatewayRouter } from '../src/contracts'
 import { ethers } from 'ethers'
-import { ERC20__factory } from '../scroll-contract-types'
+import { ERC20__factory } from '../src/scroll-contract-types'
 import { L1StandardERC20Gateway } from '@src/addresses'
 import { config } from 'dotenv'
 

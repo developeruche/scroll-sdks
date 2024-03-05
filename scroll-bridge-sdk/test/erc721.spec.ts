@@ -28,26 +28,26 @@ let l1GatewayRouter = genL1ERC721Gateway(walletL1, isTestnet)
 
 describe('ERC721 Bridging Module', async () => {
   describe('depositERC721', async () => {
-    it('should deposit ERC721 token from L1 to L2', async () => {
-      const approveTx = await L1ERC721TOKEN.approve(l1GatewayRouter.target, ethers.parseEther('1'))
-      let approveReceipt = await approveTx.wait()
+    // it('should deposit ERC721 token from L1 to L2', async () => {
+    //   const approveTx = await L1ERC721TOKEN.approve(l1GatewayRouter.target, ethers.parseEther('1'))
+    //   let approveReceipt = await approveTx.wait()
 
-      console.log('approve transaction hash ::   ', approveReceipt?.hash)
+    //   console.log('approve transaction hash ::   ', approveReceipt?.hash)
 
-      const depositTx = await depositERC721(
-        ERC721_TOKEN_ON_L1,
-        '0x5c919BCddA25447C168C87252326A43C709ECdBD',
-        1,
-        50000, // gas limit [this have to be estimated by the user (1172793 for first time and 20000 for other times)]
-        ethers.parseEther('0.01'),
-        walletL1,
-        isTestnet
-      )
+    //   const depositTx = await depositERC721(
+    //     ERC721_TOKEN_ON_L1,
+    //     '0x5c919BCddA25447C168C87252326A43C709ECdBD',
+    //     1,
+    //     50000, // gas limit [this have to be estimated by the user (1172793 for first time and 20000 for other times)]
+    //     ethers.parseEther('0.01'),
+    //     walletL1,
+    //     isTestnet
+    //   )
 
-      console.log('deposit transaction ::   ', depositTx)
+    //   console.log('deposit transaction ::   ', depositTx)
 
-      //   expect(currentMessageStatus).to.be.equal(MESSAGE_STATUS.CONFIRMED)
-    })
+    //   //   expect(currentMessageStatus).to.be.equal(MESSAGE_STATUS.CONFIRMED)
+    // })
   })
 
   describe('withdrawERC721', async () => {

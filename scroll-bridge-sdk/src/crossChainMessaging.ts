@@ -1,6 +1,6 @@
 import { genL1ScrollMessenger, genL2ScrollMessenger } from '@scroll-tech/core'
 import { CHAIN, SendMessageResponse, relayMessageParams } from './types'
-import { ContractTransactionResponse, Signer } from 'ethers'
+import { ContractTransactionResponse, Signer, Provider } from 'ethers'
 
 /**
  * @description this function is used for sending message from 'Chain A' to 'Chain B'
@@ -23,8 +23,8 @@ export async function sendMessage(
   gasLimit: number,
   from: string,
   fee: number,
-  signer: Signer,
-  isTestnet: boolean
+  isTestnet: boolean,
+  signer: Signer
 ): Promise<SendMessageResponse> {
   let sendMessageTx: ContractTransactionResponse
   if (source === CHAIN.L1) {
@@ -73,9 +73,10 @@ export async function relayMessageWithProof(
   params: relayMessageParams,
   signer: Signer,
   isTestnet: boolean
-): Promise<ContractTransactionResponse> {
+): Promise<SendMessageResponse> {
+  let relayMessageTx: ContractTransactionResponse
   const scrollMessenger = genL1ScrollMessenger(signer, isTestnet)
-  const relayMessageTx = await scrollMessenger.relayMessageWithProof(
+  relayMessageTx = await scrollMessenger.relayMessageWithProof(
     params.from,
     params.to,
     params.value,
@@ -83,7 +84,11 @@ export async function relayMessageWithProof(
     params.data,
     params.proof
   )
-  return relayMessageTx
+  const relayMessageResponseTx: SendMessageResponse = {
+    txHash: relayMessageTx.hash,
+    messageHash: '',
+  }
+  return relayMessageResponseTx
 }
 
 /**
@@ -108,18 +113,15 @@ export async function replayMessage(
   refundAddress: string,
   signer: Signer,
   isTestnet: boolean
-): Promise<any> {
+): Promise<SendMessageResponse> {
+  let replayMessageTx: ContractTransactionResponse
   const scrollMessenger = genL1ScrollMessenger(signer, isTestnet)
-  const replayMessageTx = await scrollMessenger.replayMessage(
-    from,
-    to,
-    value,
-    messageNonce,
-    data,
-    gasLimit,
-    refundAddress
-  )
-  return replayMessageTx
+  replayMessageTx = await scrollMessenger.replayMessage(from, to, value, messageNonce, data, gasLimit, refundAddress)
+  const replayMessageResponseTx: SendMessageResponse = {
+    txHash: replayMessageTx.hash,
+    messageHash: '',
+  }
+  return replayMessageResponseTx
 }
 
 /**
@@ -139,8 +141,13 @@ export async function dropMessage(
   data: string,
   isTestnet: boolean,
   signer: Signer
-): Promise<any> {
+): Promise<SendMessageResponse> {
+  let dropMessageTx: ContractTransactionResponse
   const scrollMessenger = genL1ScrollMessenger(signer, isTestnet)
-  const dropMessageTx = await scrollMessenger.dropMessage(from, to, value, messageNonce, data)
-  return dropMessageTx
+  dropMessageTx = await scrollMessenger.dropMessage(from, to, value, messageNonce, data)
+  const dropMessageResponseTx: SendMessageResponse = {
+    txHash: dropMessageTx.hash,
+    messageHash: '',
+  }
+  return dropMessageResponseTx
 }

@@ -29,7 +29,7 @@ export async function depositETH(
   await depositEtherTx.wait()
 
   const messageResponse: SendMessageResponse = {
-    txHash: '',
+    txHash: depositEtherTx.hash,
     messageHash: '',
   }
 
@@ -65,7 +65,7 @@ export async function withdrawETH(
   await withdrawEtherTx.wait()
 
   const messageResponse: SendMessageResponse = {
-    txHash: '',
+    txHash: withdrawEtherTx.hash,
     messageHash: '',
   }
 

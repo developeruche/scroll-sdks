@@ -83,7 +83,7 @@ export let genProvider = (url: string) => {
   return new ethers.JsonRpcProvider(url)
 }
 
-export let genL1CustomERC20Gateway = (provider: Provider, isTesnet?: boolean) => {
+export let genL1CustomERC20Gateway = (provider: Provider | Signer, isTesnet?: boolean) => {
   if (isTesnet) {
     return L1CustomERC20Gateway__factory.connect(L1CustomERC20Gateway_testnet, provider)
   }
@@ -107,7 +107,7 @@ export let genL1ERC1155Gateway = (provider: Provider | Signer, isTesnet?: boolea
   return L1ERC1155Gateway__factory.connect(L1ERC1155GatewayAddress, provider)
 }
 
-export let genL1ETHGateway = (provider: Provider, isTesnet?: boolean) => {
+export let genL1ETHGateway = (provider: Provider | Signer, isTesnet?: boolean) => {
   if (isTesnet) {
     return L1ETHGateway__factory.connect(L1ETHGateway_testnet, provider)
   }
@@ -115,7 +115,7 @@ export let genL1ETHGateway = (provider: Provider, isTesnet?: boolean) => {
   return L1ETHGateway__factory.connect(L1ETHGatewayAddress, provider)
 }
 
-export let genL1GasPriceOracle = (provider: Provider, isTesnet?: boolean): L1GasPriceOracleInterface => {
+export let genL1GasPriceOracle = (provider: Provider | Signer, isTesnet?: boolean): L1GasPriceOracleInterface => {
   if (isTesnet) {
     return L1GasPriceOracle__factory.connect(L1GasPriceOracleAddress_testnet, provider)
   }
@@ -131,7 +131,7 @@ export let genL1GatewayRouter = (provider: Provider | Signer, isTesnet?: boolean
   return L1GatewayRouter__factory.connect(L1GatewayRouterAddress, provider)
 }
 
-export let genL1MessageQueueWithGasPriceOracle = (provider: Provider, isTesnet?: boolean) => {
+export let genL1MessageQueueWithGasPriceOracle = (provider: Provider | Signer, isTesnet?: boolean) => {
   if (isTesnet) {
     return L1MessageQueueWithGasPriceOracle__factory.connect(L1MessageQueueWithGasPriceOracle_testnet, provider)
   }
@@ -155,7 +155,7 @@ export let genL1StandardERC20Gateway = (provider: Provider | Signer, isTesnet?: 
   return L1StandardERC20Gateway__factory.connect(L1StandardERC20GatewayAddress, provider)
 }
 
-export let genL1WETHGateway = (provider: Provider, isTesnet?: boolean) => {
+export let genL1WETHGateway = (provider: Provider | Signer, isTesnet?: boolean) => {
   if (isTesnet) {
     return L1WETHGateway__factory.connect(L1WETHGateway_testnet, provider)
   }
@@ -163,7 +163,7 @@ export let genL1WETHGateway = (provider: Provider, isTesnet?: boolean) => {
   return L1WETHGateway__factory.connect(L1WETHGatewayAddress, provider)
 }
 
-export let genL2CustomERC20Gateway = (provider: Provider, isTesnet?: boolean) => {
+export let genL2CustomERC20Gateway = (provider: Provider | Signer, isTesnet?: boolean) => {
   if (isTesnet) {
     return L2CustomERC20Gateway__factory.connect(L2CustomERC20Gateway_testnet, provider)
   }
@@ -187,7 +187,7 @@ export let genL2ERC1155Gateway = (provider: Provider | Signer, isTesnet?: boolea
   return L2ERC1155Gateway__factory.connect(L2ERC1155GatewayAddress, provider)
 }
 
-export let genL2ETHGateway = (provider: Provider, isTesnet?: boolean) => {
+export let genL2ETHGateway = (provider: Provider | Signer, isTesnet?: boolean) => {
   if (isTesnet) {
     return L2ETHGateway__factory.connect(L2ETHGateway_testnet, provider)
   }
@@ -203,7 +203,7 @@ export let genL2GatewayRouter = (provider: Provider | Signer, isTesnet?: boolean
   return L2GatewayRouter__factory.connect(L2GatewayRouterAddress, provider)
 }
 
-export let genL2MessageQueue = (provider: Provider, isTesnet?: boolean) => {
+export let genL2MessageQueue = (provider: Provider | Signer, isTesnet?: boolean) => {
   if (isTesnet) {
     return L2MessageQueue__factory.connect(L2MessageQueue_testnet, provider)
   }
@@ -219,7 +219,7 @@ export let genL2ScrollMessenger = (provider: Provider | Signer, isTesnet?: boole
   return L2ScrollMessenger__factory.connect(L2ScrollMessengerAddress, provider)
 }
 
-export let genL2StandardERC20Gateway = (provider: Provider, isTesnet?: boolean) => {
+export let genL2StandardERC20Gateway = (provider: Provider | Signer, isTesnet?: boolean) => {
   if (isTesnet) {
     return L2StandardERC20Gateway__factory.connect(L2StandardERC20Gateway_testnet, provider)
   }
@@ -227,7 +227,7 @@ export let genL2StandardERC20Gateway = (provider: Provider, isTesnet?: boolean) 
   return L2StandardERC20Gateway__factory.connect(L2StandardERC20GatewayAddress, provider)
 }
 
-export let genL2TxFeeVault = (provider: Provider, isTesnet?: boolean) => {
+export let genL2TxFeeVault = (provider: Provider | Signer, isTesnet?: boolean) => {
   if (isTesnet) {
     return L2TxFeeVault__factory.connect(L2TxFeeVault_testnet, provider)
   }
@@ -235,7 +235,7 @@ export let genL2TxFeeVault = (provider: Provider, isTesnet?: boolean) => {
   return L2TxFeeVault__factory.connect(L2TxFeeVault, provider)
 }
 
-export let genL2WETHGateway = (provider: Provider, isTesnet?: boolean) => {
+export let genL2WETHGateway = (provider: Provider | Signer, isTesnet?: boolean) => {
   if (isTesnet) {
     return L2WETHGateway__factory.connect(L2WETHGateway_testnet, provider)
   }
@@ -243,7 +243,7 @@ export let genL2WETHGateway = (provider: Provider, isTesnet?: boolean) => {
   return L2WETHGateway__factory.connect(L2WETHGatewayAddress, provider)
 }
 
-export let genScrollChain = (provider: Provider, isTesnet?: boolean) => {
+export let genScrollChain = (provider: Provider | Signer, isTesnet?: boolean) => {
   if (isTesnet) {
     return ScrollChain__factory.connect(ScrollChain_testnet, provider)
   }
@@ -251,7 +251,7 @@ export let genScrollChain = (provider: Provider, isTesnet?: boolean) => {
   return ScrollChain__factory.connect(ScrollChainAddress, provider)
 }
 
-export let genWhitelist = (provider: Provider, isTesnet?: boolean) => {
+export let genWhitelist = (provider: Provider | Signer, isTesnet?: boolean) => {
   if (isTesnet) {
     return Whitelist__factory.connect(Whitelist_testnet, provider)
   }
@@ -259,7 +259,7 @@ export let genWhitelist = (provider: Provider, isTesnet?: boolean) => {
   return Whitelist__factory.connect(Whitelist, provider)
 }
 
-export let genWrappedEther = (provider: Provider, isTesnet?: boolean) => {
+export let genWrappedEther = (provider: Provider | Signer, isTesnet?: boolean) => {
   if (isTesnet) {
     return WrappedEther__factory.connect(WrappedEther, provider)
   }

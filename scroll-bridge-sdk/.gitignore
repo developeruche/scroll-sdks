@@ -13,11 +13,11 @@ node_modules/
 yarn-error.log
 # Output dir
 dist/
-
+yarn.lock
 /typechain
 //
 /node_modules
 /scroll-contract-types
 
-/dist
+/dist 
 

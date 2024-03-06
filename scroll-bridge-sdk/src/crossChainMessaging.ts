@@ -40,8 +40,7 @@ export async function sendMessage(
       }
     )
   } else if (source === CHAIN.L2) {
-    isTestnet = true
-    const messagerL2 = genL2ScrollMessenger(signer, isTestnet)
+    const messagerL2 = genL2ScrollMessenger(signer, isTestnet);
     sendMessageTx = await messagerL2['sendMessage(address,uint256,bytes,uint256,address)'](
       target,
       value,
@@ -55,12 +54,14 @@ export async function sendMessage(
   } else {
     throw new Error('invalid source chain')
   }
+
+
   const messageResponse: SendMessageResponse = {
     txHash: sendMessageTx.hash,
     messageHash: '',
   }
 
-  return messageResponse
+  return messageResponse;
 }
 
 /**
@@ -83,12 +84,14 @@ export async function relayMessageWithProof(
     params.nonce,
     params.data,
     params.proof
-  )
+  );
+
   const relayMessageResponseTx: SendMessageResponse = {
     txHash: relayMessageTx.hash,
     messageHash: '',
   }
-  return relayMessageResponseTx
+
+  return relayMessageResponseTx;
 }
 
 /**
@@ -114,13 +117,15 @@ export async function replayMessage(
   signer: Signer,
   isTestnet: boolean
 ): Promise<SendMessageResponse> {
-  let replayMessageTx: ContractTransactionResponse
-  const scrollMessenger = genL1ScrollMessenger(signer, isTestnet)
-  replayMessageTx = await scrollMessenger.replayMessage(from, to, value, messageNonce, data, gasLimit, refundAddress)
+  let replayMessageTx: ContractTransactionResponse;
+  const scrollMessenger = genL1ScrollMessenger(signer, isTestnet);
+  replayMessageTx = await scrollMessenger.replayMessage(from, to, value, messageNonce, data, gasLimit, refundAddress);
+
   const replayMessageResponseTx: SendMessageResponse = {
     txHash: replayMessageTx.hash,
     messageHash: '',
   }
+  
   return replayMessageResponseTx
 }
 
@@ -142,12 +147,14 @@ export async function dropMessage(
   isTestnet: boolean,
   signer: Signer
 ): Promise<SendMessageResponse> {
-  let dropMessageTx: ContractTransactionResponse
-  const scrollMessenger = genL1ScrollMessenger(signer, isTestnet)
-  dropMessageTx = await scrollMessenger.dropMessage(from, to, value, messageNonce, data)
+  let dropMessageTx: ContractTransactionResponse;
+  const scrollMessenger = genL1ScrollMessenger(signer, isTestnet);
+  dropMessageTx = await scrollMessenger.dropMessage(from, to, value, messageNonce, data);
+  
   const dropMessageResponseTx: SendMessageResponse = {
     txHash: dropMessageTx.hash,
     messageHash: '',
   }
+
   return dropMessageResponseTx
 }

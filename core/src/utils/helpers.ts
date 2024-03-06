@@ -1,6 +1,4 @@
 import { BaseContract, Contract, ContractTransactionReceipt, ethers, getDefaultProvider, solidityPackedKeccak256 } from "ethers";
-import { genL1ScrollMessenger } from "..";
-import { Interface } from "mocha";
 
 
 
@@ -58,9 +56,11 @@ export function queryMessageHash(
     contract: Contract | BaseContract
   ) {
     let logDescriptions = recipt.logs.map(log => contract.interface.parseLog(log)).filter(log => !!log);
-    console.log('logDescriptions:', logDescriptions);
+    console.log(logDescriptions, 'logDescriptions');
     let logDescriptionFilter = logDescriptions.filter(log => log!.name === 'SentMessage');
-    let args = logDescriptions[0]!.args;
+    console.log(logDescriptionFilter, 'logDescriptionFilter');
+    let args = logDescriptionFilter[0]!.args;
+    console.log(args, 'args');
   
     let sender = args[0];
     let to = args[1];
@@ -69,7 +69,9 @@ export function queryMessageHash(
     let data = args[5];
   
     let message = encodeDomainCalldata(sender, to, value, messageNonce, data);
+    console.log(message, 'message');
     let messageHash = hashRelayMessage(message);
+    console.log(messageHash, 'messageHash');
     
     return messageHash;
   }

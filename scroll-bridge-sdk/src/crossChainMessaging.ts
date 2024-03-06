@@ -1,4 +1,4 @@
-import { encodeDomainCalldata, genL1ScrollMessenger, genL2ScrollMessenger, hashRelayMessage } from '@scroll-tech/core'
+import { encodeDomainCalldata, genL1ScrollMessenger, genL2ScrollMessenger, hashRelayMessage, queryMessageHash } from '@scroll-tech/core'
 import { CHAIN, SendMessageResponse, relayMessageParams } from './types'
 import { ContractTransactionResponse, Signer, Provider, ContractTransactionReceipt, Contract, BaseContract } from 'ethers'
 

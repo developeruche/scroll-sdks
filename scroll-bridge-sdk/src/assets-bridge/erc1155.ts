@@ -1,4 +1,4 @@
-import { AddressLike, BigNumberish, Signer } from 'ethers'
+import { AddressLike, BigNumberish, Signer, ContractTransactionReceipt } from 'ethers'
 import { SendMessageResponse } from '../types'
 import { genL1ERC1155Gateway, genL2ERC1155Gateway } from '@scroll-tech/core'
 
@@ -23,7 +23,7 @@ export async function depositERC1155(
   value: BigNumberish,
   signer: Signer,
   isTestnet: boolean
-): Promise<SendMessageResponse> {
+): Promise<ContractTransactionReceipt | null> {
   let l1ERC1155Gateway = genL1ERC1155Gateway(signer, isTestnet)
 
   let depositERC1155 = await l1ERC1155Gateway['depositERC1155(address,address,uint256,uint256,uint256)'](
@@ -35,15 +35,13 @@ export async function depositERC1155(
     {
       value,
     }
-  )
-  await depositERC1155.wait()
+  );
 
-  const messageResponse: SendMessageResponse = {
-    txHash: depositERC1155.hash,
-    messageHash: '',
-  }
 
-  return messageResponse
+  let receipt = await depositERC1155.wait()
+
+
+  return receipt
 }
 
 /**
@@ -67,7 +65,7 @@ export async function withdrawERC1155(
   value: BigNumberish,
   signer: Signer,
   isTestnet: boolean
-): Promise<SendMessageResponse> {
+): Promise<ContractTransactionReceipt | null> {
   let l2ERC1155Gateway = genL2ERC1155Gateway(signer, isTestnet)
 
   let withdrawERC1155 = await l2ERC1155Gateway['withdrawERC1155(address,address,uint256,uint256,uint256)'](
@@ -81,14 +79,10 @@ export async function withdrawERC1155(
     }
   )
 
-  await withdrawERC1155.wait()
+  let receipt = await withdrawERC1155.wait()
 
-  const messageResponse: SendMessageResponse = {
-    txHash: withdrawERC1155.hash,
-    messageHash: '',
-  }
 
-  return messageResponse
+  return receipt
 }
 
 /**
@@ -104,17 +98,12 @@ export async function updateTokenMapping(
   _l2Token: AddressLike,
   _signer: Signer,
   _isTestnet: boolean
-): Promise<SendMessageResponse> {
+): Promise<ContractTransactionReceipt | null> {
   let l1ERC1155Gateway = genL1ERC1155Gateway(_signer, _isTestnet)
 
   let updateTokenMapping = await l1ERC1155Gateway['updateTokenMapping(address,address)'](_l1Token, _l2Token)
 
-  await updateTokenMapping.wait()
+  let receipt = await updateTokenMapping.wait()
 
-  const messageResponse: SendMessageResponse = {
-    txHash: updateTokenMapping.hash,
-    messageHash: '',
-  }
-
-  return messageResponse
+  return receipt
 }

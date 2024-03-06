@@ -1,4 +1,4 @@
-import { BigNumberish, Provider, Signer } from 'ethers'
+import { BigNumberish, Provider, Signer, ContractTransactionReceipt } from 'ethers'
 import { SendMessageResponse } from '../types'
 import { genL1ERC721Gateway, genL2ERC721Gateway } from '@scroll-tech/core'
 
@@ -21,27 +21,22 @@ export async function depositERC721(
   value: BigNumberish,
   signer: Signer,
   isTestnet: boolean
-): Promise<SendMessageResponse> {
+): Promise<ContractTransactionReceipt | null> {
   let l1ERC721gateway = genL1ERC721Gateway(signer, isTestnet)
 
   let depositERC721 = await l1ERC721gateway['depositERC721(address,address,uint256,uint256)'](
     target,
     recipent,
     tokenId,
-    gasLimit, // gas limit
+    gasLimit,
     {
       value,
     }
   )
 
-  await depositERC721.wait()
+  let receipt = await depositERC721.wait()
 
-  const messageResponse: SendMessageResponse = {
-    txHash: depositERC721.hash,
-    messageHash: '',
-  }
-
-  return messageResponse
+  return receipt
 }
 
 /**
@@ -70,7 +65,7 @@ export async function withdrawERC721(
     target,
     recipent,
     tokenId,
-    gasLimit, // gas limit
+    gasLimit,
     {
       value,
     }

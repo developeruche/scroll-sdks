@@ -61,11 +61,9 @@ export async function sendMessage(
 
   let messageHash = queryMessageHash(receipt!, messagerL1);
 
-  console.log('Message hash:', messageHash);
-
   const messageResponse: SendMessageResponse = {
     txHash: sendMessageTx.hash,
-    messageHash: '',
+    messageHash
   }
 
   return messageResponse;
@@ -81,7 +79,7 @@ export async function relayMessageWithProof(
   params: relayMessageParams,
   signer: Signer,
   isTestnet: boolean
-): Promise<SendMessageResponse> {
+): Promise<ContractTransactionResponse> {
   let relayMessageTx: ContractTransactionResponse
   const scrollMessenger = genL1ScrollMessenger(signer, isTestnet)
   relayMessageTx = await scrollMessenger.relayMessageWithProof(
@@ -93,12 +91,8 @@ export async function relayMessageWithProof(
     params.proof
   );
 
-  const relayMessageResponseTx: SendMessageResponse = {
-    txHash: relayMessageTx.hash,
-    messageHash: '',
-  }
 
-  return relayMessageResponseTx;
+  return relayMessageTx;
 }
 
 /**
@@ -123,17 +117,13 @@ export async function replayMessage(
   refundAddress: string,
   signer: Signer,
   isTestnet: boolean
-): Promise<SendMessageResponse> {
+): Promise<ContractTransactionResponse> {
   let replayMessageTx: ContractTransactionResponse;
   const scrollMessenger = genL1ScrollMessenger(signer, isTestnet);
   replayMessageTx = await scrollMessenger.replayMessage(from, to, value, messageNonce, data, gasLimit, refundAddress);
 
-  const replayMessageResponseTx: SendMessageResponse = {
-    txHash: replayMessageTx.hash,
-    messageHash: '',
-  }
 
-  return replayMessageResponseTx
+  return replayMessageTx
 }
 
 /**
@@ -165,6 +155,7 @@ export async function dropMessage(
 
   return dropMessageResponseTx
 }
+
 
 
 

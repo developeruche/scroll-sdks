@@ -1,4 +1,4 @@
-import { BigNumberish, Signer } from 'ethers'
+import { BigNumberish, Signer, ContractTransactionReceipt } from 'ethers'
 import { SendMessageResponse } from '../types'
 import { genL1GatewayRouter, genL2GatewayRouter } from '@scroll-tech/core'
 
@@ -21,19 +21,15 @@ export async function depositETH(
   value: BigNumberish,
   signer: Signer,
   isTestnet: boolean
-): Promise<SendMessageResponse> {
+): Promise<ContractTransactionReceipt | null> {
   let l1GatewayRouter = genL1GatewayRouter(signer, isTestnet)
   let depositEtherTx = await l1GatewayRouter['depositETH(address,uint256,uint256)'](recipient, amount, gasLimit, {
     value,
   })
-  await depositEtherTx.wait()
 
-  const messageResponse: SendMessageResponse = {
-    txHash: depositEtherTx.hash,
-    messageHash: '',
-  }
+  let receipt = await depositEtherTx.wait()
 
-  return messageResponse
+  return receipt
 }
 
 /**
@@ -55,19 +51,14 @@ export async function withdrawETH(
   value: BigNumberish,
   signer: Signer,
   isTestnet: boolean
-): Promise<SendMessageResponse> {
+): Promise<ContractTransactionReceipt | null> {
   const l2GatewayRouter = genL2GatewayRouter(signer, isTestnet)
 
   const withdrawEtherTx = await l2GatewayRouter['withdrawETH(address,uint256,uint256)'](recipient, amount, gasLimit, {
     value,
   })
 
-  await withdrawEtherTx.wait()
+  let receipt = await withdrawEtherTx.wait()
 
-  const messageResponse: SendMessageResponse = {
-    txHash: withdrawEtherTx.hash,
-    messageHash: '',
-  }
-
-  return messageResponse
+  return receipt
 }

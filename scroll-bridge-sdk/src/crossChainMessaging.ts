@@ -1,6 +1,6 @@
-import { genL1ScrollMessenger, genL2ScrollMessenger } from '@scroll-tech/core'
+import { encodeDomainCalldata, genL1ScrollMessenger, genL2ScrollMessenger, hashRelayMessage } from '@scroll-tech/core'
 import { CHAIN, SendMessageResponse, relayMessageParams } from './types'
-import { ContractTransactionResponse, Signer, Provider } from 'ethers'
+import { ContractTransactionResponse, Signer, Provider, ContractTransactionReceipt, Contract, BaseContract } from 'ethers'
 
 /**
  * @description this function is used for sending message from 'Chain A' to 'Chain B'
@@ -26,9 +26,12 @@ export async function sendMessage(
   isTestnet: boolean,
   signer: Signer
 ): Promise<SendMessageResponse> {
-  let sendMessageTx: ContractTransactionResponse
+  let sendMessageTx: ContractTransactionResponse;
+  const messagerL1 = genL1ScrollMessenger(signer, isTestnet);
+  const messagerL2 = genL2ScrollMessenger(signer, isTestnet);
+
+
   if (source === CHAIN.L1) {
-    const messagerL1 = genL1ScrollMessenger(signer, isTestnet)
     sendMessageTx = await messagerL1['sendMessage(address,uint256,bytes,uint256,address)'](
       target,
       value,
@@ -40,7 +43,6 @@ export async function sendMessage(
       }
     )
   } else if (source === CHAIN.L2) {
-    const messagerL2 = genL2ScrollMessenger(signer, isTestnet);
     sendMessageTx = await messagerL2['sendMessage(address,uint256,bytes,uint256,address)'](
       target,
       value,
@@ -55,6 +57,11 @@ export async function sendMessage(
     throw new Error('invalid source chain')
   }
 
+  let receipt = await sendMessageTx.wait();
+
+  let messageHash = queryMessageHash(receipt!, messagerL1);
+
+  console.log('Message hash:', messageHash);
 
   const messageResponse: SendMessageResponse = {
     txHash: sendMessageTx.hash,
@@ -125,7 +132,7 @@ export async function replayMessage(
     txHash: replayMessageTx.hash,
     messageHash: '',
   }
-  
+
   return replayMessageResponseTx
 }
 
@@ -158,3 +165,6 @@ export async function dropMessage(
 
   return dropMessageResponseTx
 }
+
+
+

@@ -1,4 +1,6 @@
-import { ethers, solidityPackedKeccak256 } from "ethers";
+import { BaseContract, Contract, ContractTransactionReceipt, ethers, getDefaultProvider, solidityPackedKeccak256 } from "ethers";
+import { genL1ScrollMessenger } from "..";
+import { Interface } from "mocha";
 
 
 
@@ -26,6 +28,11 @@ export function encodeDomainCalldata(
     );
 }
 
+
+/**
+ * @description this function returns the hash of the message
+ * @param {string} message - this is the message to be hashed
+ */
 export function hashRelayMessage(
     message: string
 ): string {
@@ -33,7 +40,36 @@ export function hashRelayMessage(
     return hash
 }
 
+
+/**
+ * @description this is the interface for the relayMessage function
+ */
 export const RelayMessageEncoder = new ethers.Interface([
     'function relayMessage(address sender, address target, uint256 value, uint256 messsgeNonce, bytes data) view returns (bytes)'
 ])
 
+
+/**
+ * @description takes in a transaction recipt, parse the evevts and returns the message hash
+ */
+
+export function queryMessageHash(
+    recipt: ContractTransactionReceipt,
+    contract: Contract | BaseContract
+  ) {
+    let logDescriptions = recipt.logs.map(log => contract.interface.parseLog(log)).filter(log => !!log);
+    console.log('logDescriptions:', logDescriptions);
+    let logDescriptionFilter = logDescriptions.filter(log => log!.name === 'SentMessage');
+    let args = logDescriptions[0]!.args;
+  
+    let sender = args[0];
+    let to = args[1];
+    let value = args[2];
+    let messageNonce = args[3];
+    let data = args[5];
+  
+    let message = encodeDomainCalldata(sender, to, value, messageNonce, data);
+    let messageHash = hashRelayMessage(message);
+    
+    return messageHash;
+  }

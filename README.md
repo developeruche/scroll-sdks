@@ -3,6 +3,13 @@ Scroll SDK is a seamless all-in-one software development kit for carrying out br
 
 ## Installation
 
+Installation is divided into two components;
+
+### Installation from NPM 
+
+
+### Installation from Github 
+
 
 ## Usage
 

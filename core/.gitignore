@@ -13,7 +13,7 @@ node_modules/
 
 # Output dir
 dist/
-
+yarn.lock
 /typechain
 //
 

@@ -45,5 +45,28 @@ Functions for bridging ETH can be found in the `eTH.ts` file. These include:
 ## CrossChainMessaging 
 - Helps send messages from L1 to L2 and vice-versa
 
+Contains the following functions:
+#### sendMessage
+- Used for sending message from 'Chain A' to 'Chain B'
+
+#### relayMessageWithProof
+- Used to call the relayMessage function, this last step in the L2 -> L1 route
+
+#### replayMessage
+- Used to replay a message
+
+#### dropMessage
+- Used to drop a message
+
 ## Secretary 
 - For querying messages
+
+Contains the following functions:
+#### getMessageStatus
+- Used to get the message status
+
+#### getMessages
+- Used to get all the messsages carried out by the user and the message status
+
+#### getMessageProof
+- Used to get message proof

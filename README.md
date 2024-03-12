@@ -2,10 +2,10 @@
 Scroll SDK is a seamless all-in-one software development kit for carrying out bridging operations between Scroll blockchain (L2) and Ethereum blockchain (L1). With the SDK developers can simply integrate bridging features in their dApp without the hassle to implement from the ground up.
 
 ## Testing Locally
-
 ### Core
 - Clone the repo to your local machine
 - Navigate into the "core" directory
+- Create a ".env" file in the root of this directory. You can use the ".env.example" as a guide. Populate the variables with their relevant values.
 - Install the TypeScript execution engine if you haven't already. You can use the `npm install -g ts-node` command
 - Now generate the types using the `ts-node src/utils/genTypechain.ts` command
 - Install the depencies using the `yarn` command
@@ -15,6 +15,7 @@ Scroll SDK is a seamless all-in-one software development kit for carrying out br
 ### Scroll-Bridge-SDK
 - Ensure you've built the Core module before attempting this
 - Navigate into the "scroll-bridge-sdk" directory
+- Create ".env" file in the root of this directory. You can use the ".env.example" as a guide. Populate the variables with their relevant values.
 - Install the dependencies using `yarn `
 - Run the tests using `yarn test`
 

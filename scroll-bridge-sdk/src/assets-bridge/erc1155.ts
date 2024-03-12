@@ -9,7 +9,7 @@ import { genL1ERC1155Gateway, genL2ERC1155Gateway } from '@scroll-tech/core'
  * @param {BigNumberish} tokenId This is the token ID of the NFT to be deposited.
  * @param {BigNumberish} amount This is the amount of ERC1155 to be deposited to the recipent.
  * @param {number} gasLimit This is the GasLimit for the transaction.
- * @param {BigNumberish} vaule This vaule this Tx would go along with (amount + fee) [use the core moudle to estimate the fee].
+ * @param {BigNumberish} value This vaule this Tx would go along with (amount + fee) [use the core moudle to estimate the fee].
  * @param {Signer} signer This the signer of the transaction.
  * @param {boolean} isTestnet This is a flag to indicate if the network is a testnet or not.
  * @returns {SendMessageResponse} {txHash: string, messageHash: string}

@@ -2,6 +2,8 @@
 Scroll SDK is a seamless all-in-one software development kit for carrying out bridging operations between Scroll blockchain (L2) and Ethereum blockchain (L1). With the SDK developers can simply integrate bridging features in their dApp without the hassle to implement from the ground up.
 
 ## Testing Locally
+
+** Note: These steps for working on the SDK locally are valid till the SDK is published, Changes would be done on the README.md to that effect
 ### Core
 - Clone the repo to your local machine
 - Navigate into the "core" directory

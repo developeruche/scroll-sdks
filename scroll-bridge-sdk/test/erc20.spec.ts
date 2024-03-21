@@ -1,5 +1,5 @@
 import { depositERC20, withdrawERC20 } from '@src/assets-bridge/erc20'
-import { scrollContracts, genL1GatewayRouter, genL2GatewayRouter } from '@scroll-tech/core'
+import { scrollContracts, genL1GatewayRouter, genL2GatewayRouter, genL1MessageQueueWithGasPriceOracle } from '@scroll-tech/core'
 import { ethers } from 'ethers'
 import { config } from 'dotenv'
 
@@ -33,13 +33,16 @@ describe('ERC20 Bridging Module', async () => {
       let approveReceipt = await approveTx.wait()
 
       console.log('approve transaction hash ::   ', approveReceipt?.hash)
+      let gasLimit = "60000";
+      const messageQueue = genL1MessageQueueWithGasPriceOracle(providerL1, isTestnet);
+      let fee = await messageQueue.estimateCrossDomainMessageFee(gasLimit);
 
       const depositTx = await depositERC20(
         ERC20_TOKEN_ON_L1,
         '0x5c919BCddA25447C168C87252326A43C709ECdBD',
         ethers.parseEther('100'),
-        60000, // gas limit [this have to be estimated by the user (1172793 for first time and 20000 for other times)]
-        ethers.parseEther('0.01'),
+        Number(gasLimit), // gas limit [this have to be estimated by the user (1172793 for first time and 20000 for other times)]
+        fee,
         walletL1,
         isTestnet
       )

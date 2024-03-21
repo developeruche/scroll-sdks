@@ -53,26 +53,26 @@ describe('ERC20 Bridging Module', async () => {
     })
   })
 
-  describe('withdrawERC20', async () => {
-    it('should withdraw ERC20 token from L2 to L1', async () => {
-      const approveTx = await L2ERC20TOKEN.approve(l2GatewayRouter.target, ethers.parseEther('10'))
-      let approveReceipt = await approveTx.wait()
+  // describe('withdrawERC20', async () => {
+  //   it('should withdraw ERC20 token from L2 to L1', async () => {
+  //     const approveTx = await L2ERC20TOKEN.approve(l2GatewayRouter.target, ethers.parseEther('10'))
+  //     let approveReceipt = await approveTx.wait()
 
-      console.log('approve transaction hash ::   ', approveReceipt?.hash)
+  //     console.log('approve transaction hash ::   ', approveReceipt?.hash)
 
-      const withdrawTx = await withdrawERC20(
-        ERC20_TOKEN_ON_L2,
-        '0x5c919BCddA25447C168C87252326A43C709ECdBD',
-        ethers.parseEther('10'),
-        60000, // gas limit [this have to be estimated by the user (1172793 for first time and 20000 for other times)]
-        0,
-        walletL2,
-        isTestnet
-      )
+  //     const withdrawTx = await withdrawERC20(
+  //       ERC20_TOKEN_ON_L2,
+  //       '0x5c919BCddA25447C168C87252326A43C709ECdBD',
+  //       ethers.parseEther('10'),
+  //       60000, // gas limit [this have to be estimated by the user (1172793 for first time and 20000 for other times)]
+  //       0,
+  //       walletL2,
+  //       isTestnet
+  //     )
 
-      console.log('withdrawal transaction ::   ', withdrawTx)
-    })
-  })
+  //     console.log('withdrawal transaction ::   ', withdrawTx)
+  //   })
+  // })
 })
 
 

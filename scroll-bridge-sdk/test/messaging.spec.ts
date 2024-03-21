@@ -1,6 +1,6 @@
 import { ethers } from 'ethers'
 import { config } from 'dotenv'
-import { sendMessage, replayMessage, relayMessageWithProof, dropMessage } from '@src/crossChainMessaging'
+import { CrossChainMessenger } from '@src/crossChainMessaging'
 import { CHAIN } from '@src/types'
 import { genL1MessageQueueWithGasPriceOracle } from '@scroll-tech/core'
 
@@ -20,41 +20,22 @@ const walletL2 = new ethers.Wallet(PRIVATE_KEY!, providerL2)
 const isTestnet = true
 
 describe('Cross chain interaction ', async () => {
-  // describe('Send Message to L2', async () => {
-  //   it('should send message from L1 to L2', async () => {
-  //     let messageQueue = genL1MessageQueueWithGasPriceOracle(providerL1, true)
 
-  //     let fee = await messageQueue.estimateCrossDomainMessageFee(1000000)
-  //     let l2Messenger = await sendMessage(
-  //       CHAIN.L1,
-  //       targetContractL2,
-  //       0,
-  //       '0xa41368620000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000001a74657374696e67206f6e207468652063726f737320636861696e000000000000',
-  //       1000000,
-  //       walletL1.address,
-  //       Number(fee),
-  //       isTestnet,
-  //       walletL1
-  //     )
-  //     console.log('L1 to L2 Message transaction hash:', l2Messenger.txHash)
-  //   })
-  // })
   describe('Send Message to L2', async () => {
     it('should send message to L2 from L1', async () => {
       const messageQueue = genL1MessageQueueWithGasPriceOracle(providerL1, isTestnet)
-      let fee = await messageQueue.estimateCrossDomainMessageFee(1000000)
+      let fee = await messageQueue.estimateCrossDomainMessageFee(1)
       const v = Number(fee)
       console.log('fee:', fee.toString())
-      let l1Messenger = await sendMessage(
+      let crossChainMessenger = new CrossChainMessenger(walletL2, isTestnet)
+      let l1Messenger = await crossChainMessenger.sendMessage(
         CHAIN.L2,
         targetContractL1,
         0,
         '0xa41368620000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000001a74657374696e67206f6e207468652063726f737320636861696e000000000000',
         10000000,
         walletL2.address,
-        0,
-        isTestnet,
-        walletL2
+        0
       )
       console.log('L1 to L2 Message transaction hash:', l1Messenger.txHash)
     })

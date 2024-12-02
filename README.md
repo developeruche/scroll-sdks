@@ -1,5 +1,5 @@
 # Scroll-SDK
-Scroll SDK is a seamless all-in-one software development kit for carrying out bridging operations between Scroll blockchain (L2) and Ethereum blockchain (L1). With the SDK developers can simply integrate bridging features in their dApp without the hassle to implement from the ground up.
+[Scroll SDK](https://docs.scroll.io/en/sdk/) is a seamless all-in-one software development kit for carrying out bridging operations between Scroll blockchain (L2) and Ethereum blockchain (L1). With the SDK developers can simply integrate bridging features in their dApp without the hassle to implement from the ground up.
 
 ## Testing Locally
 
@@ -48,7 +48,7 @@ Provides functionality for:
 Provides functionality for:
 1. Cross-chain messaging
 2. ERC20 bridging
-3. ERC721 Bridging
-4. ERC1155 Bridging
+3. ERC721 bridging
+4. ERC1155 bridging
 
 
